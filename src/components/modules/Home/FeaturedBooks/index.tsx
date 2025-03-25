@@ -9,7 +9,7 @@ export default function FeaturedBooks() {
     <Fragment>
       <Container className="mt-12">
         <SectionTitle title="Featured Books" viewAllUrl="/books" />
-        <div className="grid grid-cols-2 gap-4 mt-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
           {Array.from({ length: 8 }).map((_, index) => (
             <FeaturedBookCard key={index} />
           ))}

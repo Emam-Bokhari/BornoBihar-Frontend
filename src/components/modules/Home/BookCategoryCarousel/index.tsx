@@ -54,7 +54,7 @@ const books = [
 export default function BookCategoryCarousel() {
   return (
     <Container className="my-12">
-      <div className="w-full mx-auto border-2 border-red-500">
+      <div className="w-full mx-auto ">
         <Carousel className="w-full">
           <CarouselContent className="gap-4 ">
             {books.map((book, index) => (
