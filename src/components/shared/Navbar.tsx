@@ -91,9 +91,11 @@ export default function Navbar() {
 
               {/* Right Side Buttons (Desktop) */}
               <div className="hidden lg:flex items-center space-x-4">
-                <span className="text-2xl">
-                  <MdFavoriteBorder />
-                </span>
+                <Link href="/wishlist" className="block">
+                  <span className="text-2xl hover:text-red-500 transition-colors">
+                    <MdFavoriteBorder />
+                  </span>
+                </Link>
                 <span className="text-2xl">
                   <BsCart />
                 </span>

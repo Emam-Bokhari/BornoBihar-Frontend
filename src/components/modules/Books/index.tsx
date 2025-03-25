@@ -8,7 +8,7 @@ export default function Books() {
   const totalCards = 12; // Total number of cards
   return (
     <Fragment>
-      <CommonBannerSection title="Shop" />
+      <CommonBannerSection title="Book Collection" />
       <Container className="mt-12">
         <div className="flex flex-col sm:flex-row gap-4 w-full">
           {/* Search Bar */}

@@ -49,7 +49,7 @@ export default function BookDetails() {
   };
   return (
     <Fragment>
-      <CommonBannerSection title="Book Details" />
+      <CommonBannerSection title="Book Information" />
       <Container className="border-2 border-red-500 my-12">
         <div className="grid md:grid-cols-2 gap-6">
           {/* Book Images */}

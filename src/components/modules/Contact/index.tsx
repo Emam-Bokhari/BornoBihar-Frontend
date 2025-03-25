@@ -9,7 +9,7 @@ import { IoIosSend } from "react-icons/io";
 export default function Contact() {
   return (
     <Fragment>
-      <CommonBannerSection title="Contact With Us" />
+      <CommonBannerSection title="Get in Touch" />
       <Container className="my-12 space-y-12">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-[#100E18]">

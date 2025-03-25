@@ -21,7 +21,7 @@ const teamMembers = [
 export default function About() {
   return (
     <Fragment>
-      <CommonBannerSection title="About Us" />
+      <CommonBannerSection title="Our Story and Mission" />
       <Container className="my-12 space-y-12">
         <div>
           <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-[#100E18]">
