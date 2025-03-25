@@ -2,7 +2,7 @@ import BookCard from "@/components/modules/Books/BookCard";
 import CommonBannerSection from "@/components/shared/CommonBannerSection";
 import Container from "@/components/shared/Container";
 import { Fragment } from "react";
-import SidebarFilterDesign from "./SidebarFilter";
+import SidebarFilter from "./SidebarFilter";
 
 export default function Books() {
   const totalCards = 12; // Total number of cards
@@ -33,7 +33,7 @@ export default function Books() {
 
       <Container className="flex gap-4 mt-4">
         <div className="border-2 border-red-500 hidden lg:block">
-          <SidebarFilterDesign />
+          <SidebarFilter />
         </div>
 
         {/* book grid */}

@@ -9,7 +9,7 @@ export default function FeaturedBookCard() {
       <div className="border-2 border-[#EBEBEB] p-4 rounded-lg">
         <div className="flex gap-4">
           {/* image */}
-          <div className="w-[120px] h-[120px] relative overflow-hidden rounded-lg ">
+          <div className="w-[160px] h-[120px] relative overflow-hidden rounded-lg ">
             <Image
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTktoNpsu4s9DMHTtXkuuItwSp2ArmLW4YjdA&s"
               alt="Thumbnail Image"
@@ -17,17 +17,17 @@ export default function FeaturedBookCard() {
               className="object-cover"
             />
           </div>
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col justify-between w-full">
             {/* title and author name */}
             <div>
               <h3 className="text-lg font-semibold text-[#100E18]">
                 Lorem ipsum dolor sit amet.
               </h3>
               <p className="text-[#8a8a8a] text-base">Moshfiqur Rahman</p>
-              <p className="text-[#F65D4E] font-bold text-base">$120</p>
+              <p className="text-[#F65D4E] font-bold text-lg">$120</p>
             </div>
             {/* actions */}
-            <div className="flex items-center gap-4">
+            <div className="flex justify-end items-center gap-4 ">
               <span className="text-2xl block">
                 <MdFavoriteBorder />
               </span>
