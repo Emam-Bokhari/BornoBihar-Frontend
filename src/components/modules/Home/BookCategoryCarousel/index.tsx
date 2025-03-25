@@ -5,7 +5,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Container from "@/components/shared/Container";
 
