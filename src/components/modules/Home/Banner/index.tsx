@@ -13,7 +13,7 @@ export default function BannerSection() {
             layout="fill"
             objectFit="cover"
           />
-          <div className="absolute inset-0 bg-black opacity-40 z-1"></div>{" "}
+          <div className="absolute inset-0 bg-black opacity-25 z-1"></div>{" "}
           {/* Overlay */}
         </div>
         <div className="relative z-10 text-center">
