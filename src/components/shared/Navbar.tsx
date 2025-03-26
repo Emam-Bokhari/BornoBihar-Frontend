@@ -29,9 +29,13 @@ import { LayoutDashboard, LogOutIcon, UserCircle2 } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { logoutFromCookie } from "@/services/Auth";
 import { IUser } from "@/types";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { Badge } from "../ui/badge";
 
 export default function Navbar({ user }: { user: IUser }) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const cartItems = useSelector((state: RootState) => state.cart?.products);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -106,9 +110,12 @@ export default function Navbar({ user }: { user: IUser }) {
                     <MdFavoriteBorder />
                   </span>
                 </Link>
-                <Link href="cart" className="block">
+                <Link href="/cart" className="relative block">
                   <span className="text-2xl">
                     <BsCart />
+                    <Badge className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center  rounded-full">
+                      {cartItems.length}
+                    </Badge>
                   </span>
                 </Link>
                 <Link

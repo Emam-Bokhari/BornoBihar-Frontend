@@ -1,13 +1,43 @@
+"use client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { addToCart } from "@/redux/features/cart/cartSlice";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "@/redux/features/wishlist/wishlistSlice";
+import { RootState } from "@/redux/store";
 import { TProduct } from "@/types";
+import { Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
-import { MdFavoriteBorder } from "react-icons/md";
+import { FaHeart } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function FeaturedBookCard({ product }: { product: TProduct }) {
-  console.log(product);
+  const dispatch = useDispatch();
+  const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
+
+  const isInWishlist = wishlistItems.some((item) => item._id === product._id);
+
+  // add to wishlist
+  const handleAddToWishlist = () => {
+    if (!isInWishlist) {
+      dispatch(addToWishlist(product));
+    }
+  };
+
+  // remove wishlist
+  const handleRemoveFromWishlist = () => {
+    dispatch(removeFromWishlist(product._id));
+  };
+
+  // add to cart
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+  };
+
   return (
     <Fragment>
       <div className="border-2 border-[#EBEBEB] p-4 rounded-lg">
@@ -43,15 +73,27 @@ export default function FeaturedBookCard({ product }: { product: TProduct }) {
             </div>
             {/* actions */}
             <div className="flex justify-end items-center gap-4 ">
-              <span className="text-2xl block">
-                <MdFavoriteBorder />
-              </span>
+              <button
+                onClick={
+                  isInWishlist ? handleRemoveFromWishlist : handleAddToWishlist
+                }
+                className={`text-2xl block cursor-pointer ${
+                  isInWishlist ? "text-red-500 cursor-pointer" : ""
+                }`}
+              >
+                {isInWishlist ? (
+                  <FaHeart className="w-5 h-5 text-red-500" />
+                ) : (
+                  <Heart className="w-5 h-5" />
+                )}
+              </button>
               <Link href={`/books/${product?._id}`} className="block">
                 <Button variant="outline" className="cursor-pointer">
                   Details
                 </Button>
               </Link>
               <Button
+                onClick={handleAddToCart}
                 disabled={product?.quantity <= 0}
                 className="bg-[#F65D4E] hover:bg-[#D84C3F] cursor-pointer text-white"
               >
