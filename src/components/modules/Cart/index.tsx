@@ -40,6 +40,8 @@ export default function ShoppingCart() {
     dispatch(removeFromCart(id));
   };
 
+  // Checkout handler
+
   return (
     <Container className="my-12">
       <div className="w-full flex flex-col lg:flex-row gap-6">
@@ -117,9 +119,11 @@ export default function ShoppingCart() {
               </div>
             </div>
 
-            <Button className="mt-4 bg-[#F65D4E] hover:bg-[#D84C3F] text-white w-full cursor-pointer">
-              Checkout
-            </Button>
+            <Link href="/checkout">
+              <Button className="mt-4 bg-[#F65D4E] hover:bg-[#D84C3F] text-white w-full cursor-pointer">
+                Checkout
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

@@ -19,16 +19,19 @@ const BookCard = ({ product }: { product: TProduct }) => {
 
   const isInWishlist = wishlistItems.some((item) => item._id === product._id);
 
+  // add to wishlist
   const handleAddToWishlist = () => {
     if (!isInWishlist) {
       dispatch(addToWishlist(product));
     }
   };
 
+  // remove from  wishlist
   const handleRemoveFromWishlist = () => {
     dispatch(removeFromWishlist(product._id));
   };
 
+  // add to cart
   const handleAddToCart = () => {
     dispatch(addToCart(product));
   };

@@ -3,12 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface CartState {
     products: TProduct[];
-    totalItems: number;
+
+
 }
 
 const initialState: CartState = {
     products: [],
-    totalItems: 0,
+
+
 };
 
 const cartSlice = createSlice({
@@ -20,11 +22,8 @@ const cartSlice = createSlice({
             if (productToAdd) {
                 productToAdd.quantity += 1;
                 return;
-            } else {
-                state.products.push({ ...action.payload, quantity: 1 })
             }
-            state.totalItems += 1;
-
+            state.products.push({ ...action.payload, quantity: 1 })
         },
         incrementOrderQuantity: (state, action) => {
             const increment = state.products.find((product) => product._id === action.payload);
@@ -48,6 +47,7 @@ const cartSlice = createSlice({
         clearCart: (state) => {
             state.products = [];
         },
+
     }
 })
 
