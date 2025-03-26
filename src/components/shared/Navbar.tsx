@@ -96,9 +96,11 @@ export default function Navbar() {
                     <MdFavoriteBorder />
                   </span>
                 </Link>
-                <span className="text-2xl">
-                  <BsCart />
-                </span>
+                <Link href="cart" className="block">
+                  <span className="text-2xl">
+                    <BsCart />
+                  </span>
+                </Link>
                 <Link
                   href="/login"
                   className="text-[#F65D4E] hover:text-[#D84C3F] block"
