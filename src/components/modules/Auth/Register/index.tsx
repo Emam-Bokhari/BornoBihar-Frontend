@@ -149,6 +149,7 @@ export default function RegisterForm() {
                 <Button
                   type="submit"
                   className="w-full mt-4 bg-[#F65D4E] hover:bg-[#D84C3F] text-white text-lg cursor-pointer"
+                  disabled={isSubmitting}
                 >
                   {isSubmitting ? "Registering..." : "Register"}
                 </Button>

@@ -23,8 +23,12 @@ import {
 import loginBanner from "@/assets/reading-books.jpg";
 import { loginSchema } from "./login.validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { loginUser } from "@/services/Auth";
+import { toast } from "sonner";
 
 export default function LoginForm() {
+  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -39,7 +43,20 @@ export default function LoginForm() {
   } = form;
 
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
-    console.log(data);
+    try {
+      const response = await loginUser(data);
+
+      if (response?.success) {
+        toast.success(response?.message);
+        form.reset();
+
+        router.push("/");
+      } else {
+        toast.error(response.error[0]?.message);
+      }
+    } catch {
+      toast.error("Something went wring!");
+    }
   };
 
   // function to prefill the form for "User"
@@ -130,6 +147,7 @@ export default function LoginForm() {
                 <Button
                   type="submit"
                   className="w-full mt-4 bg-[#F65D4E] hover:bg-[#D84C3F] text-white text-lg cursor-pointer"
+                  disabled={isSubmitting}
                 >
                   {isSubmitting ? "Logging..." : "Login"}
                 </Button>

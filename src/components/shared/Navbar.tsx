@@ -19,13 +19,19 @@ import { IoPersonAddOutline } from "react-icons/io5";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useEffect, useState } from "react";
+import { LayoutDashboard, LogOutIcon, UserCircle2 } from "lucide-react";
+import { Separator } from "../ui/separator";
+import { logoutFromCookie } from "@/services/Auth";
+import { IUser } from "@/types/user";
 
-export default function Navbar() {
+export default function Navbar({ user }: { user: IUser }) {
+  console.log(user);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -42,6 +48,11 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleLogout = async () => {
+    await logoutFromCookie();
+    // router.push("/");
+  };
 
   return (
     <div>
@@ -90,7 +101,7 @@ export default function Navbar() {
               </ul>
 
               {/* Right Side Buttons (Desktop) */}
-              <div className="hidden lg:flex items-center space-x-4">
+              <div className="hidden lg:flex items-center space-x-3">
                 <Link href="/wishlist" className="block">
                   <span className="text-2xl hover:text-red-500 transition-colors">
                     <MdFavoriteBorder />
@@ -103,15 +114,51 @@ export default function Navbar() {
                 </Link>
                 <Link
                   href="/login"
-                  className="text-[#F65D4E] hover:text-[#D84C3F] block"
+                  className={`text-[#F65D4E] hover:text-[#D84C3F] block ${
+                    user && "hidden"
+                  }`}
                 >
                   Log In
                 </Link>
                 <Link href="/register" className="block">
-                  <Button className="bg-[#F65D4E] text-white hover:bg-[#D84C3F] cursor-pointer">
+                  <Button
+                    className={`bg-[#F65D4E] text-white hover:bg-[#D84C3F] cursor-pointer ${
+                      user && "hidden"
+                    }`}
+                  >
                     SignUp
                   </Button>
                 </Link>
+                {/* profile dropdown visible for large devices */}
+                {user && (
+                  <div className="hidden lg:flex">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild className="cursor-pointer">
+                        <UserCircle2 size={28} />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-56">
+                        <DropdownMenuGroup>
+                          <DropdownMenuItem>
+                            <Link
+                              href="/user/dashboard"
+                              className="flex items-center gap-2 text-base"
+                            >
+                              <LayoutDashboard className="w-6 h-6" />
+                              Dashboard
+                            </Link>
+                          </DropdownMenuItem>
+                          <Separator />
+                          <DropdownMenuItem onClick={handleLogout}>
+                            <span className="flex gap-2 items-center text-base cursor-pointer">
+                              <LogOutIcon className="w-6 h-6" />
+                              Logout
+                            </span>
+                          </DropdownMenuItem>
+                        </DropdownMenuGroup>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                )}
               </div>
 
               {/* Mobile Menu Button - Right Side */}
@@ -153,16 +200,24 @@ export default function Navbar() {
                         Contact
                       </Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem className={`${user && "hidden"}`}>
                       <AiOutlineLogin className="mr-2 text-lg" />
                       <Link href="/login" className="text-[#100E18] ">
                         Log In
                       </Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem className={`${user && "hidden"}`}>
                       <IoPersonAddOutline className="mr-2 text-lg" />
                       <Button className=" bg-[#F65D4E] text-white hover:bg-[#D84C3F]">
                         SignUp
+                      </Button>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={handleLogout}
+                      className={`hidden ${user && "block"} w-full`}
+                    >
+                      <Button className=" bg-[#F65D4E] text-white hover:bg-[#D84C3F] w-full">
+                        Logout
                       </Button>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
