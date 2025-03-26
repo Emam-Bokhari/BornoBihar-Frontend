@@ -20,24 +20,42 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import loginBanner from "@/assets/reading-books.jpg";
+import { registerSchema } from "./register.validation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { registerUser } from "@/services/Auth";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
+  const router = useRouter();
   const form = useForm({
-    // resolver: zodResolver(loginValidation),
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       name: "",
       email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
   const {
     formState: { isSubmitting },
-    setValue,
   } = form;
 
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
-    console.log(data);
+    try {
+      const response = await registerUser(data);
+      console.log(response);
+
+      if (response?.success) {
+        toast.success(response?.message);
+        router.push("/login");
+      } else {
+        toast.error(response?.error[0]?.message);
+      }
+    } catch {
+      toast.error("Something went wrong!");
+    }
   };
 
   return (
@@ -104,6 +122,24 @@ export default function RegisterForm() {
                           {...field}
                           type="password"
                           placeholder="Enter your password"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                {/* confirm Password Field */}
+                <FormField
+                  control={form.control}
+                  name="confirmPassword"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Confirm Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="password"
+                          placeholder="Confirm your password"
                         />
                       </FormControl>
                       <FormMessage />
