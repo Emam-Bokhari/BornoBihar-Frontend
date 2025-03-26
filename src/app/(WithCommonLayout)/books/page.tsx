@@ -1,10 +1,14 @@
 import Books from "@/components/modules/Books";
+import { getAllProducts } from "@/services/Product";
+import { TProduct } from "@/types";
 import { Fragment } from "react";
 
-export default function BooksPage() {
+export default async function BooksPage() {
+  const { data: products }: { data: TProduct[] } = await getAllProducts();
+  console.log(products);
   return (
     <Fragment>
-      <Books />
+      <Books products={products} />
     </Fragment>
   );
 }
