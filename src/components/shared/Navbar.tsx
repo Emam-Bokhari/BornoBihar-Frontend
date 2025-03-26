@@ -28,10 +28,9 @@ import { useEffect, useState } from "react";
 import { LayoutDashboard, LogOutIcon, UserCircle2 } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { logoutFromCookie } from "@/services/Auth";
-import { IUser } from "@/types/user";
+import { IUser } from "@/types";
 
 export default function Navbar({ user }: { user: IUser }) {
-  console.log(user);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
