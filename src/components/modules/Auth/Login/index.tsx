@@ -21,10 +21,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import loginBanner from "@/assets/reading-books.jpg";
+import { loginSchema } from "./login.validation";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function LoginForm() {
   const form = useForm({
-    // resolver: zodResolver(loginValidation),
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -38,6 +40,18 @@ export default function LoginForm() {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
     console.log(data);
+  };
+
+  // function to prefill the form for "User"
+  const handleUserButtonClick = () => {
+    setValue("email", "user@gmail.com");
+    setValue("password", "user123");
+  };
+
+  // function to prefill the form for "Admin"
+  const handleAdminButtonClick = () => {
+    setValue("email", "admin@gmail.com");
+    setValue("password", "admin123");
   };
 
   return (
@@ -66,12 +80,14 @@ export default function LoginForm() {
               >
                 <div className="flex flex-col gap-4 md:flex-row">
                   <Button
+                    onClick={handleUserButtonClick}
                     type="submit"
                     className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white flex-1"
                   >
                     User
                   </Button>
                   <Button
+                    onClick={handleAdminButtonClick}
                     type="submit"
                     className="cursor-pointer bg-green-600 hover:bg-green-700 text-white flex-1"
                   >
