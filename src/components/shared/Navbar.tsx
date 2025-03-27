@@ -24,7 +24,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { LayoutDashboard, LogOutIcon, UserCircle2 } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { logoutFromCookie } from "@/services/Auth";
@@ -36,6 +36,7 @@ import { Badge } from "../ui/badge";
 export default function Navbar({ user }: { user: IUser }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const cartItems = useSelector((state: RootState) => state.cart?.products);
+  console.log(user?.role);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -146,7 +147,11 @@ export default function Navbar({ user }: { user: IUser }) {
                         <DropdownMenuGroup>
                           <DropdownMenuItem>
                             <Link
-                              href="/user/dashboard"
+                              href={
+                                user.role === "admin"
+                                  ? "/admin/dashboard"
+                                  : "/user/dashboard"
+                              }
                               className="flex items-center gap-2 text-base"
                             >
                               <LayoutDashboard className="w-6 h-6" />
@@ -218,14 +223,31 @@ export default function Navbar({ user }: { user: IUser }) {
                         SignUp
                       </Button>
                     </DropdownMenuItem>
-                    <DropdownMenuItem
-                      onClick={handleLogout}
-                      className={`hidden ${user && "block"} w-full`}
-                    >
-                      <Button className=" bg-[#F65D4E] text-white hover:bg-[#D84C3F] w-full">
-                        Logout
-                      </Button>
-                    </DropdownMenuItem>
+                    {user && (
+                      <Fragment>
+                        <DropdownMenuItem>
+                          <Link
+                            href={`${
+                              user?.role === "admin"
+                                ? "/admin/dashboard"
+                                : "/user/dashboard"
+                            }`}
+                            className="flex gap-2 text-base items-center"
+                          >
+                            <LayoutDashboard className="w-6 h-6" />
+                            Dashboard
+                          </Link>
+                        </DropdownMenuItem>
+
+                        <Separator />
+                        <DropdownMenuItem onClick={handleLogout}>
+                          <span className="flex gap-2 text-base items-center cursor-pointer">
+                            <LogOutIcon className="w-6 h-6" />
+                            Logout
+                          </span>
+                        </DropdownMenuItem>
+                      </Fragment>
+                    )}
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>

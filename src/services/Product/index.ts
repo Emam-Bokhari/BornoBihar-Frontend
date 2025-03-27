@@ -6,6 +6,7 @@ export const getAllProducts = async () => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/products`, {
             next: {
+                revalidate: 30,
                 tags: ["PRODUCT"]
             }
         });
@@ -20,7 +21,9 @@ export const getAllProducts = async () => {
 export const getProductById = async (id: string) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/products/${id}`, {
+            cache: "no-store",
             next: {
+
                 tags: ["PRODUCT"]
             }
         });
