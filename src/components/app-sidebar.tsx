@@ -24,7 +24,7 @@ const data = {
         { title: "Order History", url: "/user/dashboard/orders/order-history" },
         {
           title: "Recently Viewed Books",
-          url: "/user/dashboard/products/add-product",
+          url: "/user/dashboard/books/recent-viewed-books",
         },
       ],
     },

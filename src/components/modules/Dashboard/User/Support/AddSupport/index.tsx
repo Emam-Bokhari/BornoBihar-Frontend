@@ -26,6 +26,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { addSupportSchema } from "./addSupport.validation";
+import { toast } from "sonner";
+import { addSupport } from "@/services/Support";
 
 export default function AddSupportForm() {
   const router = useRouter();
@@ -48,15 +50,19 @@ export default function AddSupportForm() {
     { value: "other", label: "Other" },
   ];
 
+  const {
+    formState: { isSubmitting },
+  } = form;
+
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
-      const response = await addContact(data);
+      const response = await addSupport(data);
       console.log(response);
       if (response?.success) {
         toast.success(
-          "Thank you! Your message has been sent. We'll get back to you soon."
+          "Thank you! Your support message has been sent. We'll get back to you soon."
         );
-        // form.reset()
+        form.reset();
       } else {
         toast.error(response.error[0]?.message);
       }
@@ -200,8 +206,9 @@ export default function AddSupportForm() {
             <Button
               type="submit"
               className="bg-[#F65D4E] hover:bg-[#D84C3F] cursor-pointer"
+              disabled={isSubmitting}
             >
-              Submit Request
+              {isSubmitting ? "submitting..." : "Submit Request"}
             </Button>
           </div>
         </form>

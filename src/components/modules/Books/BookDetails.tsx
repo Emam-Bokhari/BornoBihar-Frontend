@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -20,6 +20,26 @@ export default function BookDetails({ product }: { product: TProduct }) {
   const handleThumbnailClick = (image: string) => {
     setSelectedImage(image);
   };
+
+  // set books in local storage for recent viewed functionality
+  useEffect(() => {
+    if (product) {
+      const storedBooks = localStorage.getItem("recentBooks");
+      let viewedBooks = storedBooks ? JSON.parse(storedBooks) : [];
+
+      viewedBooks = viewedBooks.filter(
+        (item: { _id: string }) => item._id !== product._id
+      );
+
+      viewedBooks.unshift(product);
+      if (viewedBooks.length > 10) {
+        viewedBooks.pop();
+      }
+
+      localStorage.setItem("recentBooks", JSON.stringify(viewedBooks));
+    }
+  }, [product]);
+
   return (
     <Fragment>
       <CommonBannerSection title="Book Information" />
