@@ -23,3 +23,28 @@ export const addOrder = async (orderData: any,) => {
         throw new Error(error)
     }
 }
+
+export const getOrderHistory = async () => {
+    try {
+        const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_API}/orders/byUser`,
+            {
+                next: {
+                    tags: ["ORDER"]
+                },
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: (await cookies()).get("accessToken")!.value,
+                },
+            }
+        );
+
+        const data = await response.json();
+
+        return data;
+
+    } catch (error: any) {
+        throw new Error(error)
+    }
+};

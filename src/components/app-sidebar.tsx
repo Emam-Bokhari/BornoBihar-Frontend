@@ -21,7 +21,7 @@ const data = {
     {
       title: "Books",
       items: [
-        { title: "Order History", url: "/user/dashboard/products" },
+        { title: "Order History", url: "/user/dashboard/orders/order-history" },
         {
           title: "Recently Viewed Books",
           url: "/user/dashboard/products/add-product",
