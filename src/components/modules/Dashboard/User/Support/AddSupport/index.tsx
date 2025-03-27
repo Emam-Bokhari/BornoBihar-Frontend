@@ -49,7 +49,20 @@ export default function AddSupportForm() {
   ];
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
+    try {
+      const response = await addContact(data);
+      console.log(response);
+      if (response?.success) {
+        toast.success(
+          "Thank you! Your message has been sent. We'll get back to you soon."
+        );
+        // form.reset()
+      } else {
+        toast.error(response.error[0]?.message);
+      }
+    } catch {
+      toast.error("Something went wrong!");
+    }
   };
 
   return (
