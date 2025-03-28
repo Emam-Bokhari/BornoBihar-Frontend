@@ -1,4 +1,4 @@
-type CategoryType =
+export type CategoryType =
     | "fiction"
     | "nonFiction"
     | "academic"
