@@ -58,6 +58,10 @@ const data = {
       ],
     },
     {
+      title: "Orders",
+      items: [{ title: "Orders", url: "/admin/dashboard/orders" }],
+    },
+    {
       title: "Blogs",
       items: [
         { title: "Blogs", url: "/admin/dashboard/blogs" },

@@ -1,8 +1,6 @@
 import ManageProducts from "@/components/modules/Dashboard/Admin/Products";
 import { getAllProducts } from "@/services/Product";
 
-export const dynamic = "force-dynamic";
-
 export default async function ProductsManagementPage() {
   const { data } = await getAllProducts();
   const products = data ?? [];

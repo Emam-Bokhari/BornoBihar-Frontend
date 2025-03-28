@@ -14,6 +14,7 @@ type TUserId = {
 }
 
 export type TOrder = {
+    _id: string;
     userId?: TUserId;
     products: {
         productId: string;
