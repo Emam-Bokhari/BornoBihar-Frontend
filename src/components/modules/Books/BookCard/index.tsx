@@ -12,6 +12,7 @@ import {
 } from "@/redux/features/wishlist/wishlistSlice";
 import { FaHeart } from "react-icons/fa6";
 import { addToCart } from "@/redux/features/cart/cartSlice";
+import { toast } from "sonner";
 
 const BookCard = ({ product }: { product: TProduct }) => {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ const BookCard = ({ product }: { product: TProduct }) => {
   // add to cart
   const handleAddToCart = () => {
     dispatch(addToCart(product));
+    toast.success("Product added to your cart!");
   };
 
   return (

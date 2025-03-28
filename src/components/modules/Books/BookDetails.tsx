@@ -12,9 +12,15 @@ import { CiShoppingCart } from "react-icons/ci";
 import { TProduct } from "@/types";
 import moment from "moment-timezone";
 import { getCategoryColor } from "@/app/utils/getCategoryColor";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "@/redux/features/cart/cartSlice";
+import { RootState } from "@/redux/store";
+import { toast } from "sonner";
 
 export default function BookDetails({ product }: { product: TProduct }) {
+  const cartItems = useSelector((state: RootState) => state.cart?.products);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const [selectedImage, setSelectedImage] = useState(product?.images[0]);
   const handleThumbnailClick = (image: string) => {
@@ -39,6 +45,21 @@ export default function BookDetails({ product }: { product: TProduct }) {
       localStorage.setItem("recentBooks", JSON.stringify(viewedBooks));
     }
   }, [product]);
+
+  // add to cart
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+    toast.success("Product added to your cart!");
+  };
+
+  // handle buy now
+  const handleBuyNow = () => {
+    if (cartItems.length === 0) {
+      toast.error("Your cart is empty! Please add a product to the cart.");
+    } else {
+      router.push("/checkout");
+    }
+  };
 
   return (
     <Fragment>
@@ -161,7 +182,7 @@ export default function BookDetails({ product }: { product: TProduct }) {
               <Button
                 variant="outline"
                 className="mt-4 cursor-pointer"
-                onClick={() => router.push("/checkout")}
+                onClick={handleAddToCart}
                 disabled={product?.quantity <= 0}
               >
                 Add To Cart
@@ -169,7 +190,7 @@ export default function BookDetails({ product }: { product: TProduct }) {
               </Button>
               <Button
                 className="mt-4 bg-[#F65D4E] hover:bg-[#D84C3F] text-white cursor-pointer"
-                onClick={() => router.push("/checkout")}
+                onClick={handleBuyNow}
                 disabled={product?.quantity <= 0}
               >
                 Buy Now

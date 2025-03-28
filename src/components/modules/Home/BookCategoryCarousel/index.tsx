@@ -7,47 +7,47 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import Container from "@/components/shared/Container";
+import fiction from "@/assets/fiction.png";
+import nonfiction from "@/assets/non-fiction.png";
+import academic from "@/assets/academic.png";
+import philosophy from "@/assets/philosophy.png";
+import children from "@/assets/children.png";
+import science from "@/assets/science.png";
+import religion from "@/assets/religion.png";
+import history from "@/assets/history.png";
 
 const books = [
   {
-    title: "Christian Living",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_VHpHi-Wm0FioGf4sJ_flWN2OqVCTkLklnA&s",
+    title: "Fiction",
+    image: fiction,
   },
   {
-    title: "Church History",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_VHpHi-Wm0FioGf4sJ_flWN2OqVCTkLklnA&s",
+    title: "Non Fiction",
+    image: nonfiction,
   },
   {
-    title: "Educational Curriculum",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_VHpHi-Wm0FioGf4sJ_flWN2OqVCTkLklnA&s",
+    title: "Academic",
+    image: academic,
   },
   {
-    title: "Fiction & Fantasy",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_VHpHi-Wm0FioGf4sJ_flWN2OqVCTkLklnA&s",
+    title: "Philosophy",
+    image: philosophy,
   },
   {
-    title: "Religion & Spirituality",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_VHpHi-Wm0FioGf4sJ_flWN2OqVCTkLklnA&s",
+    title: "Children",
+    image: children,
   },
   {
-    title: "Romance Books",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_VHpHi-Wm0FioGf4sJ_flWN2OqVCTkLklnA&s",
+    title: "Science",
+    image: science,
   },
   {
-    title: "Religion & Spirituality",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_VHpHi-Wm0FioGf4sJ_flWN2OqVCTkLklnA&s",
+    title: "Religion",
+    image: religion,
   },
   {
-    title: "Romance Books",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_VHpHi-Wm0FioGf4sJ_flWN2OqVCTkLklnA&s",
+    title: "History",
+    image: history,
   },
 ];
 
@@ -79,8 +79,8 @@ export default function BookCategoryCarousel() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="left-2" />
-          <CarouselNext className="right-2" />
+          <CarouselPrevious className="left-2 text-[#F65D4E] hover:text-[#D84C3F]" />
+          <CarouselNext className="right-2 text-[#F65D4E] hover:text-[#D84C3F]" />
         </Carousel>
       </div>
     </Container>

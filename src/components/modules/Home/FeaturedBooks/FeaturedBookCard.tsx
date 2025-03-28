@@ -14,6 +14,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 import { FaHeart } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
 
 export default function FeaturedBookCard({ product }: { product: TProduct }) {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ export default function FeaturedBookCard({ product }: { product: TProduct }) {
   // add to cart
   const handleAddToCart = () => {
     dispatch(addToCart(product));
+    toast.success("Product added to your cart!");
   };
 
   return (
