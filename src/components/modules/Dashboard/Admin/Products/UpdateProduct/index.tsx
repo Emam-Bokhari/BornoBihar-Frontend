@@ -17,8 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { addProduct } from "@/services/Product";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { updateProductById } from "@/services/Product";
 import { CalendarIcon, Plus } from "lucide-react";
 import {
   FieldValues,
@@ -29,7 +28,6 @@ import {
 } from "react-hook-form";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { ProductSchema } from "./product.validation";
 import {
   Popover,
   PopoverContent,
@@ -37,6 +35,7 @@ import {
 } from "@/components/ui/popover";
 import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
+import { TProduct } from "@/types";
 
 const categoryOptions = [
   { value: "fiction", label: "Fiction" },
@@ -108,30 +107,31 @@ const formatOptions = [
   { value: "deluxeEdition", label: "Deluxe Edition" },
 ];
 
-export default function AddProductForm() {
+export default function UpdateProductForm({ product }: { product: TProduct }) {
   const router = useRouter();
   const form = useForm({
     defaultValues: {
-      title: "",
-      category: "",
-      author: "",
-      aboutAuthor: "",
-      shipping: "",
-      returnsPolicy: "",
-      termsOfSale: "",
-      description: "",
-      price: "",
-      images: [{ value: "" }],
-      publisher: "",
-      publishedDate: "",
-      edition: "",
-      language: "",
-      pages: "",
-      rating: "",
-      format: "",
-      quantity: "",
+      title: product?.title || "",
+      category: product?.category || "",
+      author: product?.author || "",
+      aboutAuthor: product?.aboutAuthor || "",
+      shipping: product?.shipping || "",
+      returnsPolicy: product?.returnsPolicy || "",
+      termsOfSale: product?.termsOfSale || "",
+      description: product?.description || "",
+      price: product?.price || "",
+      images: product?.images?.map((image) => ({
+        value: image,
+      })) || [{ value: "" }],
+      publisher: product?.publisher || "",
+      publishedDate: product?.publishedDate || "",
+      edition: product?.edition || "",
+      language: product?.language || "",
+      pages: product?.pages || "",
+      rating: product?.rating || "",
+      format: product?.format || "",
+      quantity: product?.quantity || "",
     },
-    resolver: zodResolver(ProductSchema),
   });
 
   const {
@@ -160,9 +160,9 @@ export default function AddProductForm() {
     };
 
     try {
-      const response = await addProduct(modifiedData);
+      const response = await updateProductById(product._id, modifiedData);
       if (response?.success) {
-        toast.success("Product is created successfully");
+        toast.success("Product updated successfully");
         router.push("/admin/dashboard/products");
       } else {
         toast.error(response.error[0]?.message);
@@ -174,7 +174,7 @@ export default function AddProductForm() {
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-semibold mb-4">Add a New Product</h2>
+      <h2 className="text-2xl font-semibold mb-4">Update Product</h2>
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           {/* title and category */}
@@ -192,6 +192,7 @@ export default function AddProductForm() {
                     <FormControl>
                       <Input
                         {...field}
+                        value={field.value || ""}
                         placeholder="Enter your book title"
                         className="w-full"
                       />
@@ -214,6 +215,7 @@ export default function AddProductForm() {
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
+                      value={field.value || ""}
                     >
                       <FormControl>
                         <SelectTrigger className="w-full">
@@ -291,6 +293,7 @@ export default function AddProductForm() {
                     <FormControl>
                       <Input
                         {...field}
+                        value={field.value || ""}
                         placeholder="Enter the price e.g, 15"
                         className="w-full"
                       />
@@ -313,6 +316,7 @@ export default function AddProductForm() {
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
+                      value={field.value || ""}
                     >
                       <FormControl>
                         <SelectTrigger className="w-full">
@@ -350,6 +354,7 @@ export default function AddProductForm() {
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
+                    value={field.value || ""}
                   >
                     <FormControl>
                       <SelectTrigger className="w-full">
@@ -381,6 +386,7 @@ export default function AddProductForm() {
                     <FormControl>
                       <Input
                         {...field}
+                        value={field.value || ""}
                         placeholder="Enter the author"
                         className="w-full"
                       />
@@ -425,6 +431,7 @@ export default function AddProductForm() {
                     <FormControl>
                       <Input
                         {...field}
+                        value={field.value || ""}
                         placeholder="Enter book edition e.g, 1st Edition"
                         className="w-full"
                       />
@@ -449,6 +456,7 @@ export default function AddProductForm() {
                     <FormControl>
                       <Input
                         {...field}
+                        value={field.value || ""}
                         placeholder="Enter book publisher"
                         className="w-full"
                       />
@@ -516,6 +524,7 @@ export default function AddProductForm() {
                     <FormControl>
                       <Input
                         {...field}
+                        value={field.value || ""}
                         placeholder="Enter book rating e.g, 4"
                         className="w-full"
                       />
@@ -538,6 +547,7 @@ export default function AddProductForm() {
                     <FormControl>
                       <Input
                         {...field}
+                        value={field.value || ""}
                         placeholder="Enter book quantity e.g, 50"
                         className="w-full"
                       />
@@ -562,6 +572,7 @@ export default function AddProductForm() {
                   <FormControl>
                     <Textarea
                       {...field}
+                      value={field.value || ""}
                       placeholder="Enter description"
                       className="w-full min-h-[200px]"
                     />
@@ -584,6 +595,7 @@ export default function AddProductForm() {
                   <FormControl>
                     <Textarea
                       {...field}
+                      value={field.value || ""}
                       placeholder="Enter about author"
                       className="w-full min-h-[200px]"
                     />
@@ -607,6 +619,7 @@ export default function AddProductForm() {
                   <FormControl>
                     <Textarea
                       {...field}
+                      value={field.value || ""}
                       placeholder="Enter shipping policy"
                       className="w-full min-h-[200px]"
                     />
@@ -630,6 +643,7 @@ export default function AddProductForm() {
                   <FormControl>
                     <Textarea
                       {...field}
+                      value={field.value || ""}
                       placeholder="Enter returns policy"
                       className="w-full min-h-[200px]"
                     />
@@ -652,6 +666,7 @@ export default function AddProductForm() {
                   <FormControl>
                     <Textarea
                       {...field}
+                      value={field.value || ""}
                       placeholder="Enter terms of sale"
                       className="w-full min-h-[200px]"
                     />
@@ -668,7 +683,7 @@ export default function AddProductForm() {
               className="bg-[#F59E0B] hover:bg-[#D97706] cursor-pointer"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Adding..." : "Add Product"}
+              {isSubmitting ? "Updating..." : "Update Product"}
             </Button>
           </div>
         </form>
