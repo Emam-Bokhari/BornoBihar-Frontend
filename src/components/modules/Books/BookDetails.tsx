@@ -145,9 +145,7 @@ export default function BookDetails({ product }: { product: TProduct }) {
                 <p>
                   <strong>Published Date:</strong>{" "}
                   <span className="text-[#8a8a8a]">
-                    {moment
-                      .utc(product?.publishedDate)
-                      .format("MMMM DD, YYYY [UTC]")}
+                    {moment.utc(product?.publishedDate).format("MMMM DD, YYYY")}
                   </span>
                 </p>
                 {product?.edition && (

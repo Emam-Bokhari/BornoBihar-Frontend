@@ -41,6 +41,7 @@ import { toast } from "sonner";
 import { TProduct } from "@/types";
 import { deleteProductById } from "@/services/Product";
 import { CategoryType, getCategoryColor } from "@/app/utils/getCategoryColor";
+import moment from "moment-timezone";
 
 export default function ManageProducts({ products }: { products: TProduct[] }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -163,7 +164,7 @@ export default function ManageProducts({ products }: { products: TProduct[] }) {
       header: "Published Date",
       cell: ({ row }) => {
         const date = new Date(row.getValue("publishedDate"));
-        return <div>{date.toLocaleDateString()}</div>;
+        return <div>{moment.utc(date).format("MMMM DD, YYYY")}</div>;
       },
     },
     {

@@ -49,7 +49,7 @@ export type TProduct = {
     | 'german' | "italian" | "portuguese" | "russian" | "chinese" | "japanese" | "korean" | "turkish" | "urdu" | "swedish" | "dutch" | "polish" | "greek" | "hebrew" | "persian" | "thai" | "vietnamese";
     pages?: number;
     rating: number;
-    discount?: number;
+    // discount?: number;
     format: 'hardcover' | 'paperback' | 'eBook' | 'audioBook' | "pdf" | "audiobookMP3" | "audiobookCD" | "comicBook" | "interactiveBook" | "flipBook" | "boxSet" | "deluxeEdition";
     quantity: number;
     isDeleted?: boolean;
