@@ -30,7 +30,8 @@ export const getOrderHistory = async () => {
             `${process.env.NEXT_PUBLIC_BASE_API}/orders/byUser`,
             {
                 next: {
-                    tags: ["ORDER"]
+                    tags: ["ORDER"],
+                    revalidate: 30,
                 },
                 method: "GET",
                 headers: {
@@ -53,7 +54,7 @@ export const getAllOrders = async () => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/orders`, {
             next: {
-                // revalidate: 30,
+                revalidate: 30,
                 tags: ["ORDER"]
             },
             method: "GET",
@@ -72,7 +73,7 @@ export const getAllOrders = async () => {
 export const getOrderById = async (id: string) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/orders/${id}`, {
-            // cache: "no-store",
+            cache: "no-store",
             next: {
                 tags: ["ORDER"]
             },
@@ -99,7 +100,7 @@ export const updateOrderStatusById = async (id: string, status: any) => {
             },
             body: JSON.stringify(status)
         })
-        revalidateTag("");
+        revalidateTag("ORDER");
         const data = await res.json();
         return data;
     } catch (error: any) {

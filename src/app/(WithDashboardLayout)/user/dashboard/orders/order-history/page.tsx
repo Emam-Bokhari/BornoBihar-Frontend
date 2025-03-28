@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import OrderHistory from "@/components/modules/Dashboard/User/Orders/OrderHistory";
 import { getOrderHistory } from "@/services/Order";
 

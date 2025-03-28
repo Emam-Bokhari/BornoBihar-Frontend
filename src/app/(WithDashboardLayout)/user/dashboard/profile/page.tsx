@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import Profile from "@/components/modules/Dashboard/User/Profile";
 import { getMe } from "@/services/User";
 import { Fragment } from "react";

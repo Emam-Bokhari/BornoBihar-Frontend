@@ -16,8 +16,6 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
-
-import { useRouter } from "next/navigation";
 import {
   Select,
   SelectContent,
@@ -30,7 +28,6 @@ import { toast } from "sonner";
 import { addSupport } from "@/services/Support";
 
 export default function AddSupportForm() {
-  const router = useRouter();
   const form = useForm({
     defaultValues: {
       name: "",

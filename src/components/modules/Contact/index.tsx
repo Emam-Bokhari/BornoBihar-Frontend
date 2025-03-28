@@ -1,12 +1,59 @@
+"use client";
 import CommonBannerSection from "@/components/shared/CommonBannerSection";
 import Container from "@/components/shared/Container";
 import { Button } from "@/components/ui/button";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { addContact } from "@/services/Contact";
 import { Fragment } from "react";
+import {
+  FieldValues,
+  FormProvider,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
 import { IoIosSend } from "react-icons/io";
+import { toast } from "sonner";
+import { contactSchema } from "./contact.validation";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-export default function Contact() {
+export default function ContactForm() {
+  const form = useForm({
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+    resolver: zodResolver(contactSchema),
+  });
+
+  const {
+    formState: { isSubmitting },
+  } = form;
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    try {
+      const response = await addContact(data);
+      if (response?.success) {
+        toast.success(
+          "Thank you! Your message has been sent. We'll get back to you soon."
+        );
+        form.reset();
+      } else {
+        toast.error(response.error[0]?.message);
+      }
+    } catch {
+      toast.error("Something went wrong!");
+    }
+  };
+
   return (
     <Fragment>
       <CommonBannerSection title="Get in Touch" />
@@ -28,56 +75,86 @@ export default function Contact() {
             <h3 className="text-2xl font-semibold text-[#100E18]">
               Send Us a Message
             </h3>
-            <form className="space-y-4">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-lg font-medium text-[#100E18]"
-                >
-                  Name
-                </label>
-                <Input
-                  id="name"
-                  placeholder="Your Name"
-                  className="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-lg font-medium text-[#100E18]"
-                >
-                  Email
-                </label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="Your Email"
-                  className="w-full p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-lg font-medium text-[#100E18]"
-                >
-                  Message
-                </label>
-                <Textarea
-                  id="message"
-                  placeholder="Your Message"
-                  className="w-full h-48 p-3 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
-              </div>
-              <div className="text-center">
-                <Button
-                  type="submit"
-                  className="bg-[#F65D4E] hover:bg-[#D84C3F] text-white cursor-pointer"
-                >
-                  Send Message <IoIosSend className="text-2xl" />
-                </Button>
-              </div>
-            </form>
+            <FormProvider {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-4"
+              >
+                <div>
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>
+                          Name <span className="text-red-500">*</span>
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            placeholder="Enter your full name"
+                            className="w-full"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div>
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>
+                          Email <span className="text-red-500">*</span>
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            placeholder="Enter your email"
+                            className="w-full"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div>
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>
+                          Message <span className="text-red-500">*</span>
+                        </FormLabel>
+                        <FormControl>
+                          <Textarea
+                            {...field}
+                            placeholder="Enter your message..."
+                            className="w-full min-h-56"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="text-center">
+                  <Button
+                    type="submit"
+                    className="bg-[#F65D4E] hover:bg-[#D84C3F] text-white cursor-pointer"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Sending Message..." : "Send Message"}{" "}
+                    <IoIosSend className="text-2xl" />
+                  </Button>
+                </div>
+              </form>
+            </FormProvider>
           </div>
 
           {/* Contact Details */}
