@@ -8,26 +8,28 @@ export default function BlogCard({ blog }: { blog: TBlog }) {
     <Link href={`/blogs/${blog._id}`} className="block group">
       <div
         key={blog._id}
-        className=" flex flex-col lg:flex-row gap-4 lg:items-center"
+        className="flex flex-col lg:flex-row gap-4 lg:items-center"
       >
-        {/* image */}
-        <div className="w-full flex-1 lg:w-[190px]  h-[200px] lg:h-[130px] relative overflow-hidden rounded-lg ">
+        {/* Image */}
+        <div className="w-full h-[200px] md:h-[250px] lg:w-[190px]  lg:h-[130px] relative overflow-hidden rounded-lg">
           <Image
             src={blog?.thumbnail}
             alt="Thumbnail Image"
-            fill
+            layout="fill"
+            objectFit="cover"
             className="object-cover"
           />
         </div>
-        {/* text */}
-        <div className="space-y-2  flex-1/4 ">
+
+        {/* Text */}
+        <div className="space-y-2 flex-1 sm:flex-1">
           <p className="text-[#8a8a8a] text-base">
             {moment.utc(blog?.createdAt).format("DD MMMM, YYYY")}
           </p>
 
-          <p className="text-lg font-semibold text-[#100E18] group-hover:text-[#F65D4E] cursor-pointer ">
-            {blog?.title?.length > 60
-              ? `${blog?.title?.slice(0, 60)}...`
+          <p className="text-lg font-semibold text-[#100E18] group-hover:text-[#F65D4E] cursor-pointer">
+            {blog?.title?.length > 40
+              ? `${blog?.title?.slice(0, 40)}...`
               : blog?.title}
           </p>
         </div>

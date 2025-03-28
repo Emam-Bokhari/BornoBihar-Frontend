@@ -108,14 +108,6 @@ export default function ManageNewsletters({
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <Link
-                  href={`/admin/dashboard/products/update-product/${product?._id}`}
-                  className="flex gap-2"
-                >
-                  <FaEdit className="mr-2 text-green-500" /> Edit
-                </Link>
-              </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => handleDeleteNewsletter(product?._id)}
                 className="cursor-pointer"
