@@ -37,8 +37,8 @@ export default function PromotionSummaryBar() {
   ];
 
   return (
-    <Container>
-      <div className="flex justify-center items-center py-8 bg-white ">
+    <Container className="my-12">
+      <div className="flex justify-center items-center  bg-white ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4  w-full">
           {features.map((feature, index) => (
             <div key={index} className="flex gap-4 items-center">

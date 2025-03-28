@@ -3,6 +3,7 @@ import { BlogSection } from "@/components/modules/Home/BlogSection.tsx";
 
 import BookCategoryCarousel from "@/components/modules/Home/BookCategoryCarousel";
 import FeaturedBooks from "@/components/modules/Home/FeaturedBooks";
+import NewsletterSection from "@/components/modules/Home/Newsletter";
 import PromotionalBanner from "@/components/modules/Home/PromotionalBanner";
 import PromotionSummaryBar from "@/components/modules/Home/PromotionSummaryBar";
 import { getAllBlogs } from "@/services/Blog";
@@ -20,6 +21,7 @@ export default async function HomePage() {
       <PromotionalBanner />
       <FeaturedBooks />
       <BlogSection blogs={blogs} />
+      <NewsletterSection />
       <PromotionSummaryBar />
     </Fragment>
   );
