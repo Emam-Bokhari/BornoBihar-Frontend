@@ -8,7 +8,7 @@ export const authRoutes = ["/login", "/register"]
 const roleBasedPrivateRoutes = {
     user: [/^\/user/, /^\/cart/, /^\/checkout/, /^\/dashboard\/user\/books\/recent-viewed-books/, /^\/dashboard\/user\/orders\/order-history/, /^\/dashboard\/user\/profile/, /^\/dashboard\/user\/supports\/add-support/],
 
-    admin: [/^\/admin/, /^\/user/, /^\/cart/, /^\/checkout/, /^\/dashboard\/user\/books\/recent-viewed-books/, /^\/dashboard\/user\/orders\/order-history/, /^\/dashboard\/user\/profile/, /^\/dashboard\/user\/supports/],
+    admin: [/^\/admin/, /^\/user/, /^\/cart/, /^\/checkout/, /^\/dashboard\/user\/books\/recent-viewed-books/, /^\/dashboard\/user\/orders\/order-history/, /^\/dashboard\/user\/profile/, /^\/dashboard\/admin\/users/, /^\/dashboard\/admin\/orders/, /^\/dashboard\/admin\/contacts/, /^\/dashboard\/admin\/products/, /^\/dashboard\/admin\/products\/add-product/, /^\/dashboard\/admin\/products\/update-product/, /^\/dashboard\/admin\/supports/,],
 };
 
 export const middleware = async (request: NextRequest) => {
@@ -48,8 +48,14 @@ export const config = {
         "/user/dashboard/profile",
         "/user/dashboard/books/recent-viewed-books",
         "/user/dashboard/orders/order-history",
+        "/admin/dashboard/supports",
         "/user/dashboard/supports/add-support",
-        // "/admin/dashboard/blogs/add-blog",
+        "/admin/dashboard/users",
+        "/admin/dashboard/orders",
+        "/admin/dashboard/contacts",
+        "/admin/dashboard/products",
+        "/admin/dashboard/products/add-product",
+        "/admin/dashboard/products/update-product",
         // "/admin/dashboard/blogs/update-blog",
         // "/admin/dashboard/blogs/update-blog/:page",
         // "/admin/dashboard/users",

@@ -74,7 +74,7 @@ const data = {
         { title: "Contacts", url: "/admin/dashboard/contacts" },
         {
           title: "Newsletters",
-          url: "/admin/dashboard/newsLetters",
+          url: "/admin/dashboard/newsletters",
         },
       ],
     },
