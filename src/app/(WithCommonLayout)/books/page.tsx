@@ -5,7 +5,7 @@ import { Fragment } from "react";
 
 export default async function BooksPage() {
   const { data: products }: { data: TProduct[] } = await getAllProducts();
-  console.log(products);
+
   return (
     <Fragment>
       <Books products={products} />

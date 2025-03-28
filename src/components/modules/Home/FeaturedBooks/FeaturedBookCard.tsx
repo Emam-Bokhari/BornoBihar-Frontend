@@ -43,9 +43,9 @@ export default function FeaturedBookCard({ product }: { product: TProduct }) {
   return (
     <Fragment>
       <div className="border-2 border-[#EBEBEB] p-4 rounded-lg">
-        <div className="flex gap-4">
+        <div className="flex flex-col md:flex-row gap-4">
           {/* image */}
-          <div className="w-[160px] h-[120px] relative overflow-hidden rounded-lg ">
+          <div className="w-full md:w-[160px] h-[120px] relative overflow-hidden rounded-lg ">
             <Image
               src={product?.images[0]}
               alt="Thumbnail Image"
@@ -53,7 +53,7 @@ export default function FeaturedBookCard({ product }: { product: TProduct }) {
               className="object-cover"
             />
           </div>
-          <div className="flex flex-col justify-between w-full">
+          <div className="flex flex-col justify-between w-full ">
             {/* title and author name */}
             <div>
               <h3 className="text-lg font-semibold text-[#100E18]">

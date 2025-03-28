@@ -3,8 +3,8 @@ import giftBoxBanner from "@/assets/gift-box-banner.png";
 
 export default function GiftBoxBanner() {
   return (
-    <div className="bg-[#7D4ED2] p-6 rounded-xl flex items-center gap-6   text-white group w-full">
-      <div className="relative w-1/2">
+    <div className="bg-[#7D4ED2] p-6 rounded-xl flex flex-col md:flex-row items-center gap-6   text-white group w-full">
+      <div className="relative lg:w-1/2">
         <Image
           src={giftBoxBanner}
           alt="Gift Box"
@@ -17,7 +17,7 @@ export default function GiftBoxBanner() {
           <span className="text-2xl">20%</span>
         </div>
       </div>
-      <div className="w-1/2">
+      <div className="lg:w-1/2">
         <h2 className="text-4xl font-bold">
           Books Make
           <br />

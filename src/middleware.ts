@@ -8,7 +8,7 @@ export const authRoutes = ["/login", "/register"]
 const roleBasedPrivateRoutes = {
     user: [/^\/user/, /^\/cart/, /^\/checkout/, /^\/dashboard\/user\/books\/recent-viewed-books/, /^\/dashboard\/user\/orders\/order-history/, /^\/dashboard\/user\/profile/, /^\/dashboard\/user\/supports\/add-support/],
 
-    admin: [/^\/admin/, /^\/user/, /^\/cart/, /^\/checkout/, /^\/dashboard\/user\/books\/recent-viewed-books/, /^\/dashboard\/user\/orders\/order-history/, /^\/dashboard\/user\/profile/, /^\/dashboard\/admin\/users/, /^\/dashboard\/admin\/orders/, /^\/dashboard\/admin\/contacts/, /^\/dashboard\/admin\/products/, /^\/dashboard\/admin\/products\/add-product/, /^\/dashboard\/admin\/products\/update-product/, /^\/dashboard\/admin\/supports/,],
+    admin: [/^\/admin/, /^\/user/, /^\/cart/, /^\/checkout/, /^\/dashboard\/user\/books\/recent-viewed-books/, /^\/dashboard\/user\/orders\/order-history/, /^\/dashboard\/user\/profile/, /^\/dashboard\/admin\/users/, /^\/dashboard\/admin\/orders/, /^\/dashboard\/admin\/contacts/, /^\/dashboard\/admin\/products/, /^\/dashboard\/admin\/products\/add-product/, /^\/dashboard\/admin\/products\/update-product/, /^\/dashboard\/admin\/supports/, /^\/dashboard\/admin\/blogs/, /^\/dashboard\/admin\/blogs\/add-blog/, /^\/dashboard\/admin\/blogs\/update-blog/, /^\/dashboard\/admin\/newsletters/],
 };
 
 export const middleware = async (request: NextRequest) => {
@@ -56,10 +56,9 @@ export const config = {
         "/admin/dashboard/products",
         "/admin/dashboard/products/add-product",
         "/admin/dashboard/products/update-product",
-        // "/admin/dashboard/blogs/update-blog",
-        // "/admin/dashboard/blogs/update-blog/:page",
-        // "/admin/dashboard/users",
-        // "/admin/dashboard/contacts",
-        // "/admin/dashboard/newsLetters",
+        "/admin/dashboard/blogs",
+        "/admin/dashboard/blogs/add-blog",
+        "/admin/dashboard/blogs/update-blog",
+        "/admin/dashboard/newsletters",
     ]
 }

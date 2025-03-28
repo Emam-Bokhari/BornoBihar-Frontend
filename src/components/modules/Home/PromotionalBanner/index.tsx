@@ -5,7 +5,7 @@ import NovelDiscountBanner from "./NovelDiscountBanner";
 
 export default function PromotionalBanner() {
   return (
-    <Container className="flex gap-4 my-12">
+    <Container className="flex flex-col xl:flex-row gap-4 my-12">
       <GiftBoxBanner />
       <NovelDiscountBanner />
     </Container>

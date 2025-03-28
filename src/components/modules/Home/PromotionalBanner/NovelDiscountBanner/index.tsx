@@ -4,8 +4,8 @@ import Link from "next/link";
 
 export default function NovelDiscountBanner() {
   return (
-    <div className="bg-[#D89600] p-6 rounded-xl flex items-center gap-6   text-white w-full group">
-      <div className="relative w-1/2">
+    <div className="bg-[#D89600] p-6 rounded-xl flex flex-col md:flex-row items-center gap-6   text-white w-full group">
+      <div className="relative lg:w-1/2">
         <Image
           src={saleOfBanner}
           alt="Novel Book"
@@ -14,7 +14,7 @@ export default function NovelDiscountBanner() {
           className="rounded-lg transition-transform duration-300 group-hover:scale-110"
         />
       </div>
-      <div className="w-1/2">
+      <div className="lg:w-1/2">
         <p className="text-sm font-bold">NOVELS EVERY DAY!</p>
         <h2 className="text-4xl font-bold mt-1">Sale 10% Off</h2>
         <p className="text-lg mt-2">It all begins with a great book!</p>
