@@ -17,10 +17,13 @@ export default function Profile({ profileData }: { profileData: TUser }) {
         <CardHeader className="flex items-center gap-4">
           <div className="w-[70px] h-[70px] relative overflow-hidden">
             <Image
-              src="https://res.cloudinary.com/dvpqm6zct/image/upload/v1742736505/user_ug5gxm.png"
+              src={
+                profileData?.image ||
+                "https://res.cloudinary.com/dvpqm6zct/image/upload/v1742736505/user_ug5gxm.png"
+              }
               alt="Profile Image"
               fill
-              className="object-cover"
+              className="object-cover rounded-full"
             />
           </div>
           <div>

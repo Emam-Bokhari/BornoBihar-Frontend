@@ -2,23 +2,24 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getOrderHistory } from "@/services/Order";
 import { ShoppingCart, Clock, DollarSign, PackageCheck } from "lucide-react";
 
+interface Order {
+  totalAmount: number;
+  status: string;
+}
+
 export default async function UserStatsCard() {
   const response = await getOrderHistory();
-  const orderData = response?.data || [];
+  const orderData: Order[] = Array.isArray(response?.data) ? response.data : [];
 
-  if (!Array.isArray(orderData) || orderData.length === 0) {
-    return <p className="text-center text-gray-500 mt-4">No orders found.</p>;
-  }
-
-  const totalOrders = orderData.length;
-  const totalSpent = orderData.reduce(
-    (sum, order) => sum + order.totalAmount,
-    0
-  );
-  const pendingOrders = orderData.filter(
-    (order) => order.status === "pending"
-  ).length;
-  const lastOrderStatus = orderData[0]?.status || "N/A";
+  const totalOrders = orderData.length || 0;
+  const totalSpent =
+    orderData.reduce(
+      (sum: number, order: Order) => sum + order.totalAmount,
+      0
+    ) || 0;
+  const pendingOrders =
+    orderData.filter((order: Order) => order.status === "pending").length || 0;
+  const lastOrderStatus = orderData.length > 0 ? orderData[0]?.status : "N/A";
 
   const stats = [
     {
@@ -29,7 +30,7 @@ export default async function UserStatsCard() {
     },
     {
       title: "Total Spent",
-      value: `$${totalSpent}`,
+      value: `$${totalSpent.toFixed(2)}`,
       icon: <DollarSign />,
       color: "text-green-500",
     },
