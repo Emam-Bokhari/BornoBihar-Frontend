@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📚 Book Shop Frontend
 
-## Getting Started
+## 🚀 Overview
 
-First, run the development server:
+Book Shop is an online platform designed to make book discovery and purchasing. It provides an intuitive and efficient way to browse, search, filter, sort and buy books.
+
+## 🌍 Live Demo
+
+🔗 **Live Site:** [Click Here](https://book-shop-client-mauve.vercel.app)  
+🎥 **Demo Video:** [Watch Here](https://your-demo-video-link.com)
+
+## 🛠 Technologies Used
+
+- **Frontend:** Next.js, ShadcnUi
+- **Backend:** Node.js, Express.js, MongoDB
+- **Authentication:** JWT
+- **State Management:** React-redux,Redux Toolkit
+- **Payment System:** SSL Commerez
+- **Toast:** Sonner
+- **Deployment:** Vercel
+
+## 🔧 Installation Guide
+
+Follow these steps to run the project locally:
 
 ```bash
+# Clone the repository
+git clone https://github.com/Emam-Bokhari/BornoBihar-Frontend.git
+
+# Navigate to the project folder
+cd BornoBihar-Frontend
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- ✅ **User-Friendly UI** – A beautifully designed interface for book browsing.
+- ✅ **Advanced Search & Filter** – Find your favorite books quickly with intuitive search options.
+- ✅ **Secure Payment System** – Enjoy a safe and smooth checkout process with SSL Commrez.
+- ✅ **Responsive Design** – Perfectly optimized for all devices.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📞 Contact
 
-## Learn More
+For any inquiries, or suggestions, feel free to reach out:
 
-To learn more about Next.js, take a look at the following resources:
+- **Email**: [moshfiqurrahman37@gmail.com](mailto:moshfiqurrahman37@gmail.com)
+- **GitHub**: [Emam-Bokhari](https://github.com/Emam-Bokhari)
+- **LinkedIn**: [Moshfiqur Rahman](https://www.linkedin.com/in/moshfiqur-rahman-a302b32a3/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🔥 Happy reading & coding! 📚🚀
