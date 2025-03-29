@@ -680,7 +680,7 @@ export default function UpdateProductForm({ product }: { product: TProduct }) {
           <div className="mt-4">
             <Button
               type="submit"
-              className="bg-[#F59E0B] hover:bg-[#D97706] cursor-pointer"
+              className="bg-[#F65D4E] hover:bg-[#D84C3F] cursor-pointer"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Updating..." : "Update Product"}

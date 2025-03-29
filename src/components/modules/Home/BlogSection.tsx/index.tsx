@@ -10,13 +10,13 @@ import LatestBlogCard from "./LatestBlogCard";
 export const BlogSection = ({ blogs }: { blogs: TBlog[] }) => {
   return (
     <Container className="my-12">
-      <SectionTitle title="Latest Blog Post" viewAllUrl="/blogs" />
+      <SectionTitle title="Blog Post" viewAllUrl="/blogs" />
 
       <div className="mt-4  grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 ">
         {/* column 01 */}
         <div className="space-y-4 ">
           {blogs?.slice(0, 3).map((blog) => (
-            <LatestBlogCard key={blog._id} blog={blog} />
+            <LatestBlogCard key={blog?._id} blog={blog} />
           ))}
         </div>
 
@@ -37,7 +37,7 @@ export const BlogSection = ({ blogs }: { blogs: TBlog[] }) => {
                 {moment.utc(blogs[3]?.createdAt).format("DD MMMM, YYYY")}
               </p>
 
-              <Link href={`/blogs/${blogs[3]._id}`} className="block">
+              <Link href={`/blogs/${blogs[3]?._id}`} className="block">
                 <p className="text-3xl font-semibold hover:text-[#F65D4E] cursor-pointer">
                   {blogs[3]?.title}
                 </p>
@@ -49,7 +49,7 @@ export const BlogSection = ({ blogs }: { blogs: TBlog[] }) => {
         {/* column 03 */}
         <div className="space-y-4">
           {blogs?.slice(4, 7).map((blog) => (
-            <LatestBlogCard key={blog._id} blog={blog} />
+            <LatestBlogCard key={blog?._id} blog={blog} />
           ))}
         </div>
       </div>

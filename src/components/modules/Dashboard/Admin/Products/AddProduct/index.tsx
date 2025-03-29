@@ -243,7 +243,7 @@ export default function AddProductForm() {
               </Label>
               <Button
                 variant="outline"
-                className="size-8 cursor-pointer bg-[#F59E0B] hover:bg-[#D97706]"
+                className="size-8 cursor-pointer bg-[#F65D4E] hover:bg-[#D84C3F]"
                 onClick={addImage}
                 type="button"
               >
@@ -665,7 +665,7 @@ export default function AddProductForm() {
           <div className="mt-4">
             <Button
               type="submit"
-              className="bg-[#F59E0B] hover:bg-[#D97706] cursor-pointer"
+              className="bg-[#F65D4E] hover:bg-[#D84C3F] cursor-pointer"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Adding..." : "Add Product"}

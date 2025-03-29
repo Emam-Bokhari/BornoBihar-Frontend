@@ -85,9 +85,15 @@ const BookCard = ({ product }: { product: TProduct }) => {
         {/* text */}
         <div className=" mt-2">
           <h3 className="text-lg font-semibold text-[#100E18]">
-            {product?.title}
+            {product?.title?.length > 36
+              ? `${product.title.slice(0, 36)}...`
+              : product.title}
           </h3>
-          <p className="text-[#8a8a8a] text-base">{product?.author}</p>
+          <p className="text-[#8a8a8a] text-base">
+            {product?.author?.length > 30
+              ? `${product.title.slice(0, 30)}...`
+              : product.author}
+          </p>
           <p className="text-[#F65D4E] font-bold text-xl">${product?.price}</p>
         </div>
       </div>

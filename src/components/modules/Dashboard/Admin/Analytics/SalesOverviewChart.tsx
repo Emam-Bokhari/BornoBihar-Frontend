@@ -19,18 +19,16 @@ export default function SalesOverviewChart({
 }: {
   orderData: TOrder[];
 }) {
-  console.log(orderData);
-
   const [lineChartData, setLineChartData] = useState<any[]>([]);
   const [barChartData, setBarChartData] = useState<any[]>([]);
 
   useEffect(() => {
-    const lineData = orderData.map((order) => ({
+    const lineData = orderData?.map((order) => ({
       date: new Date(order.createdAt).toLocaleDateString(),
       sales: order.totalAmount || 0,
     }));
 
-    const barData = orderData.map((order, index) => ({
+    const barData = orderData?.map((order, index) => ({
       orderId: `Order ${index + 1}`,
       sales: order.totalAmount || 0,
     }));
