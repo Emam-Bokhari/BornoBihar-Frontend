@@ -36,10 +36,14 @@ export default function AddBlogForm() {
     resolver: zodResolver(blogSchema),
   });
 
+  const {
+    formState: { isSubmitting },
+  } = form;
+
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const response = await addBlog(data);
-      console.log(response);
+
       if (response?.success) {
         toast.success("Blog is created successfully");
         router.push("/admin/dashboard/blogs");
@@ -49,7 +53,6 @@ export default function AddBlogForm() {
     } catch {
       toast.error("Something went wrong!");
     }
-    console.log(data);
   };
 
   return (
@@ -227,8 +230,9 @@ export default function AddBlogForm() {
             <Button
               type="submit"
               className="bg-[#F65D4E] hover:bg-[#D84C3F] cursor-pointer"
+              disabled={isSubmitting}
             >
-              Add Blog
+              {isSubmitting ? "Adding..." : "Add Blog"}
             </Button>
           </div>
         </form>

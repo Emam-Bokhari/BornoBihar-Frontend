@@ -34,6 +34,10 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
     },
   });
 
+  const {
+    formState: { isSubmitting },
+  } = form;
+
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const response = await updateBlogById(blog._id, data);
@@ -230,8 +234,9 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
             <Button
               type="submit"
               className="bg-[#F65D4E] hover:bg-[#D84C3F] cursor-pointer"
+              disabled={isSubmitting}
             >
-              Update Blog
+              {isSubmitting ? "Updating..." : "Update Blog"}
             </Button>
           </div>
         </form>
