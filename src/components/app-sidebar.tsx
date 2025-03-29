@@ -1,4 +1,3 @@
-import logo from "@/assets/Logo.png";
 import {
   Sidebar,
   SidebarContent,
@@ -15,6 +14,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { getCurrentUser } from "@/services/Auth";
+import logo from "@/assets/logo.png";
 
 const data = {
   navMain: [
