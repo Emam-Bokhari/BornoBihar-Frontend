@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import UserDashboard from "@/components/modules/Dashboard/User/Analytics";
 import { Fragment } from "react";
 
