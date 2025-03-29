@@ -14,7 +14,6 @@ export default async function CategoryPage({
   const { data: products }: { data: TProduct[] } = await getProductsByCategory(
     category
   );
-  console.log(category);
 
   if (!(products ?? false)) {
     return (

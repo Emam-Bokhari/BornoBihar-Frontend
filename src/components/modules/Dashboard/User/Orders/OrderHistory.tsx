@@ -41,7 +41,6 @@ export default function OrderHistory({ orderHistory }: { orderHistory: any }) {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
-  console.log(orderHistory);
 
   const columns: ColumnDef<TOrder>[] = [
     {

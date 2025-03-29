@@ -37,7 +37,6 @@ export default function UserOrderAnalytics({
         0
       ),
     }));
-    console.log(barData);
 
     setLineChartData(lineData);
     setBarChartData(barData);

@@ -54,7 +54,7 @@ export default function AddSupportForm() {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const response = await addSupport(data);
-      console.log(response);
+
       if (response?.success) {
         toast.success(
           "Thank you! Your support message has been sent. We'll get back to you soon."

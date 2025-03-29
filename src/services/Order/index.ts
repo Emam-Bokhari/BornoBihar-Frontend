@@ -17,7 +17,7 @@ export const addOrder = async (orderData: any,) => {
         revalidateTag("ORDER");
 
         const data = await res.json()
-        console.log(data)
+
         return data;
     } catch (error: any) {
         throw new Error(error)
