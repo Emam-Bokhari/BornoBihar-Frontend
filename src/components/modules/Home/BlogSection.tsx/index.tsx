@@ -3,8 +3,9 @@ import SectionTitle from "@/components/shared/SectionTitle";
 import { TBlog } from "@/types";
 import moment from "moment-timezone";
 import Image from "next/image";
-import BlogCard from "./BlogCard";
+
 import Link from "next/link";
+import LatestBlogCard from "./LatestBlogCard";
 
 export const BlogSection = ({ blogs }: { blogs: TBlog[] }) => {
   return (
@@ -15,7 +16,7 @@ export const BlogSection = ({ blogs }: { blogs: TBlog[] }) => {
         {/* column 01 */}
         <div className="space-y-4 ">
           {blogs?.slice(0, 3).map((blog) => (
-            <BlogCard key={blog._id} blog={blog} />
+            <LatestBlogCard key={blog._id} blog={blog} />
           ))}
         </div>
 
@@ -48,7 +49,7 @@ export const BlogSection = ({ blogs }: { blogs: TBlog[] }) => {
         {/* column 03 */}
         <div className="space-y-4">
           {blogs?.slice(4, 7).map((blog) => (
-            <BlogCard key={blog._id} blog={blog} />
+            <LatestBlogCard key={blog._id} blog={blog} />
           ))}
         </div>
       </div>

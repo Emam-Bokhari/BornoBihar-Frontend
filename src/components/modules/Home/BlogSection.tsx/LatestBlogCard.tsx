@@ -3,7 +3,7 @@ import moment from "moment-timezone";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function BlogCard({ blog }: { blog: TBlog }) {
+export default function LatestBlogCard({ blog }: { blog: TBlog }) {
   return (
     <Link href={`/blogs/${blog._id}`} className="block group">
       <div

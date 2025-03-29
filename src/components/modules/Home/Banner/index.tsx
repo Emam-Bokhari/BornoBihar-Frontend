@@ -26,7 +26,7 @@ export default function BannerSection() {
             <br />
             we have something for everyone.
           </p>
-          <Button className=" bg-[#F65D4E] text-white   hover:bg-[#D84C3F] cursor-pointer">
+          <Button className=" bg-[#F65D4E] text-white  hover:bg-[#D84C3F] cursor-pointer">
             Start Your Reading Journey
           </Button>
         </div>
