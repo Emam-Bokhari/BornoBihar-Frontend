@@ -464,7 +464,7 @@ export default function AddProductForm() {
                     <FormControl>
                       <Input
                         {...field}
-                        placeholder="Enter book published date"
+                        placeholder="Enter book published date e.g, 25-jan-2025"
                         className="w-full"
                       />
                     </FormControl>
@@ -574,7 +574,7 @@ export default function AddProductForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Shipping Policy <span className="text-red-500">*</span>
+                    Shipping <span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
                     <Textarea

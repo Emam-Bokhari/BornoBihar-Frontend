@@ -22,7 +22,7 @@ export const middleware = async (request: NextRequest) => {
             return NextResponse.next()
         } else {
             return NextResponse.redirect(
-                new URL(`http://localhost:3000/login`, request.url)
+                new URL(`https://borno-bihar-frontend-9tdv.vercel.app/login`, request.url)
             )
         }
     }

@@ -112,14 +112,15 @@ export default function ManageSupports({ supports }: { supports: TSupport[] }) {
       header: "Issue Description",
       cell: ({ row }) => {
         const description = row.getValue("issueDescription") as string;
-        const truncatedText =
-          description.length > 70
-            ? `${description.slice(0, 70)}...`
-            : description;
 
-        return <div className="font-medium">{truncatedText}</div>;
+        return (
+          <div className="font-medium whitespace-pre-wrap break-words">
+            {description}
+          </div>
+        );
       },
     },
+
     {
       accessorKey: "createdAt",
       header: "Created At",
