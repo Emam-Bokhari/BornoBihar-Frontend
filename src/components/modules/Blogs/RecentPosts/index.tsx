@@ -1,71 +1,38 @@
-// components/RecentPosts.js
+import { TBlog } from "@/types";
 import Image from "next/image";
+import moment from "moment-timezone";
+import Link from "next/link";
 
-const RecentPosts = () => {
-  const posts = [
-    {
-      imageUrl:
-        "https://res.cloudinary.com/dvpqm6zct/image/upload/v1743224077/logan-gutierrez-TDJkMUxWYSI-unsplash_hnbmjy.jpg", // আপনার ছবির পাথ এখানে দিন
-      date: "NOVEMBER 14, 2022",
-      title: "5 Attractive Bookstore WordPress Themes",
-    },
-    {
-      imageUrl:
-        "https://res.cloudinary.com/dvpqm6zct/image/upload/v1743224077/logan-gutierrez-TDJkMUxWYSI-unsplash_hnbmjy.jpg",
-      date: "FEBRUARY 11, 2022",
-      title: "Behind the Scenes with Author Victoria Aveyard",
-    },
-    {
-      imageUrl:
-        "https://res.cloudinary.com/dvpqm6zct/image/upload/v1743224077/logan-gutierrez-TDJkMUxWYSI-unsplash_hnbmjy.jpg",
-      date: "FEBRUARY 11, 2022",
-      title: "Oprah's Latest Book Club Pick is Being Adapted for TV!",
-    },
-    {
-      imageUrl:
-        "https://res.cloudinary.com/dvpqm6zct/image/upload/v1743224077/logan-gutierrez-TDJkMUxWYSI-unsplash_hnbmjy.jpg",
-      date: "FEBRUARY 11, 2022",
-      title: "7 Books to Combat Racism",
-    },
-    {
-      imageUrl:
-        "https://res.cloudinary.com/dvpqm6zct/image/upload/v1743224077/logan-gutierrez-TDJkMUxWYSI-unsplash_hnbmjy.jpg",
-      date: "FEBRUARY 11, 2022",
-      title: "Top 10 Books to Make It a Great Year",
-    },
-  ];
-
+export default function RecentPosts({ posts }: { posts: TBlog[] }) {
   return (
-    <div className="bg-white p-6 rounded-lg  w-full max-w-sm border border-gray-200">
+    <div className="bg-white p-6 rounded-lg w-full max-w-sm border border-gray-200">
       <h2 className="text-xl font-bold mb-4">Recent Posts</h2>
-      <ul>
-        {posts.map((post, index) => (
-          <li
-            key={index}
-            className={`flex items-start mb-4 ${
-              index !== posts.length - 1 ? "border-b border-gray-200 pb-4" : ""
-            }`}
-          >
-            <div className="w-26 h-20 relative mr-4 flex-1">
-              <Image
-                src={post.imageUrl}
-                alt={post.title}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-md"
-              />
-            </div>
-            <div className="flex-1/3">
-              <span className="text-xs text-[#8a8a8a]">{post.date}</span>
-              <p className="text-sm font-semibold text-[#100E18]">
-                {post.title}
+
+      {posts?.map((post) => (
+        <div key={post._id} className="flex items-start mb-4 ">
+          <div className="w-24 h-20 md:w-32 md:h-24 relative mr-4">
+            <Image
+              src={post.thumbnail}
+              alt={post.title}
+              layout="fill"
+              objectFit="cover"
+              className="rounded-md"
+            />
+          </div>
+          <div className="flex-1">
+            <span className="text-xs text-[#8a8a8a]">
+              {moment.utc(post?.createdAt).format("MMMM DD, YYYY")}
+            </span>
+            <Link href={`/blogs/${post._id}`}>
+              <p className="text-sm font-semibold text-[#100E18] hover:text-[#F65D4E] hover:underline cursor-pointer break-words">
+                {post?.title?.length > 40
+                  ? `${post?.title?.slice(0, 40)}...`
+                  : post?.title}
               </p>
-            </div>
-          </li>
-        ))}
-      </ul>
+            </Link>
+          </div>
+        </div>
+      ))}
     </div>
   );
-};
-
-export default RecentPosts;
+}

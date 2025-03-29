@@ -1,12 +1,14 @@
-import BlogCard from "@/components/modules/Blogs";
-import RecentPosts from "@/components/modules/Blogs/RecentPosts";
-import Container from "@/components/shared/Container";
+import AllBlogs from "@/components/modules/Blogs";
+import { getAllBlogs } from "@/services/Blog";
+import { TBlog } from "@/types";
+import { Fragment } from "react";
 
-export default function BlogsPage() {
+export default async function BlogsPage() {
+  const { data: blogs }: { data: TBlog[] } = await getAllBlogs();
+
   return (
-    <Container className="flex flex-col lg:flex-row gap-12 lg:gap-4 my-12">
-      <BlogCard />
-      <RecentPosts />
-    </Container>
+    <Fragment>
+      <AllBlogs blogs={blogs} />
+    </Fragment>
   );
 }
