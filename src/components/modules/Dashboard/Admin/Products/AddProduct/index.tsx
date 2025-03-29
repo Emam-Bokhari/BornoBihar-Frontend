@@ -19,7 +19,6 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { addProduct } from "@/services/Product";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CalendarIcon, Plus } from "lucide-react";
 import {
   FieldValues,
   FormProvider,
@@ -30,13 +29,7 @@ import {
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { ProductSchema } from "./product.validation";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { format } from "date-fns";
-import { Calendar } from "@/components/ui/calendar";
+import { Plus } from "lucide-react";
 
 const categoryOptions = [
   { value: "fiction", label: "Fiction" },
@@ -464,38 +457,17 @@ export default function AddProductForm() {
                 control={form.control}
                 name="publishedDate"
                 render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel>Published Date</FormLabel>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <FormControl>
-                          <Button className="font-normal" variant={"outline"}>
-                            {field.value ? (
-                              format(field.value, "PPP")
-                            ) : (
-                              <span>Pick a date</span>
-                            )}
-                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                          </Button>
-                        </FormControl>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={
-                            field.value ? new Date(field.value) : undefined
-                          }
-                          onSelect={(date) =>
-                            field.onChange(date?.toISOString())
-                          }
-                          disabled={(date) =>
-                            date > new Date() || date < new Date("1900-01-01")
-                          }
-                          initialFocus
-                        />
-                      </PopoverContent>
-                    </Popover>
-
+                  <FormItem>
+                    <FormLabel>
+                      Published Date<span className="text-red-500">*</span>
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder="Enter book published date"
+                        className="w-full"
+                      />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}

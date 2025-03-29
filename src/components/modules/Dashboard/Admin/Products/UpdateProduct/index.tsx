@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { updateProductById } from "@/services/Product";
-import { CalendarIcon, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import {
   FieldValues,
   FormProvider,
@@ -28,13 +28,6 @@ import {
 } from "react-hook-form";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { format } from "date-fns";
-import { Calendar } from "@/components/ui/calendar";
 import { TProduct } from "@/types";
 
 const categoryOptions = [
@@ -468,46 +461,38 @@ export default function UpdateProductForm({ product }: { product: TProduct }) {
             </div>
             {/* published date */}
             <div>
-              <FormField
-                control={form.control}
-                name="publishedDate"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel>Published Date</FormLabel>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <FormControl>
-                          <Button className="font-normal" variant={"outline"}>
-                            {field.value ? (
-                              format(field.value, "PPP")
-                            ) : (
-                              <span>Pick a date</span>
-                            )}
-                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                          </Button>
-                        </FormControl>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={
-                            field.value ? new Date(field.value) : undefined
+              <div>
+                <FormField
+                  control={form.control}
+                  name="publishedDate"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>
+                        Published Date<span className="text-red-500">*</span>
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          value={
+                            field.value
+                              ? new Date(field.value)
+                                  .toISOString()
+                                  .split("T")[0]
+                              : ""
                           }
-                          onSelect={(date) =>
-                            field.onChange(date?.toISOString())
+                          onChange={(e) =>
+                            field.onChange(new Date(e.target.value))
                           }
-                          disabled={(date) =>
-                            date > new Date() || date < new Date("1900-01-01")
-                          }
-                          initialFocus
+                          type="date"
+                          placeholder="Enter book published date"
+                          className="w-full"
                         />
-                      </PopoverContent>
-                    </Popover>
-
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
             </div>
           </div>
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
