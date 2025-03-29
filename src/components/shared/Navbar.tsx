@@ -40,25 +40,49 @@ export const MegaMenu = () => {
       <div className="flex-1 min-w-[260px] border-r pr-6">
         <h3 className="text-gray-500 font-semibold uppercase mb-3">Category</h3>
         <ul className="space-y-2 text-gray-700">
-          <li>Fiction</li>
-          <li>Non Fiction</li>
-          <li>Academic</li>
-          <li>Philosophy</li>
-          <li>Children</li>
-          <li>Science</li>
+          <li>
+            <NavigationLink route="Fiction" path="/category/fiction" />
+          </li>
+          <li>
+            <NavigationLink route="Non Fiction" path="/category/nonFiction" />
+          </li>
+          <li>
+            <NavigationLink route="Academic" path="/category/academic" />
+          </li>
+          <li>
+            <NavigationLink route="Philosophy" path="/category/philosophy" />
+          </li>
+          <li>
+            <NavigationLink route="Children" path="/category/children" />
+          </li>
+          <li>
+            <NavigationLink route="Science" path="/category/science" />
+          </li>
         </ul>
       </div>
 
-      {/* books */}
+      {/* quick links */}
       <div className="flex-1 min-w-[260px] border-r pr-6">
-        <h3 className="text-gray-500 font-semibold uppercase mb-3">Books</h3>
+        <h3 className="text-gray-500 font-semibold uppercase mb-3">
+          Quick Links
+        </h3>
         <ul className="space-y-2 text-gray-700">
-          <li>Boxed Style</li>
-          <li>Full Style</li>
-          <li>Product Sidebar</li>
-          <li>Bought Together</li>
-          <li>Product Countdown</li>
-          <li>Grouped Product</li>
+          <li>
+            <NavigationLink route="About" path="/about" />
+          </li>
+          <li>
+            <NavigationLink route="Shop" path="/books" />
+          </li>
+          <li>
+            {" "}
+            <NavigationLink route="Contact" path="/contact" />
+          </li>
+          <li>
+            <NavigationLink route="Blogs" path="/blogs" />
+          </li>
+          <li>
+            <NavigationLink route="Privacy Policy" path="/privacy-policy" />
+          </li>
         </ul>
       </div>
 
