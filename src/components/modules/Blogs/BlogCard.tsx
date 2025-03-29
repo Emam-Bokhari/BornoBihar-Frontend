@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import { TBlog } from "@/types";
 import moment from "moment-timezone";
 import Image from "next/image";

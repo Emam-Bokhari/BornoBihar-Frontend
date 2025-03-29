@@ -158,6 +158,9 @@ export default function Navbar({ user }: { user: IUser }) {
                   <MegaMenu />
                 </li>
                 <li>
+                  <NavigationLink route="Category" path="/category" />
+                </li>
+                <li>
                   <NavigationLink route="Blogs" path="/blogs" />
                 </li>
                 <li>
