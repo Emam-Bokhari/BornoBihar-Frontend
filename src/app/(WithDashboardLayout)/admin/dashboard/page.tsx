@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import AdminDashboard from "@/components/modules/Dashboard/Admin/Analytics";
 
 import { Fragment } from "react";
