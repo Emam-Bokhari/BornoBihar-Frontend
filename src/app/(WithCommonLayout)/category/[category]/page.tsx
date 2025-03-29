@@ -1,5 +1,4 @@
 import BookCard from "@/components/modules/Books/BookCard";
-import CategoryCard from "@/components/modules/Category/CategoryCard";
 import Container from "@/components/shared/Container";
 
 import { getProductsByCategory } from "@/services/Product";

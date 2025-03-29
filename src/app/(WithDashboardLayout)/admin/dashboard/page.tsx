@@ -1,10 +1,11 @@
-import AdminDashboardOverview from "@/components/modules/Dashboard/Admin/Home";
+import AdminDashboard from "@/components/modules/Dashboard/Admin/Analytics";
+
 import { Fragment } from "react";
 
-export default function AdminDashboardOverviewPage() {
+export default function AdminDashboardPage() {
   return (
     <Fragment>
-      <AdminDashboardOverview />
+      <AdminDashboard />
     </Fragment>
   );
 }
