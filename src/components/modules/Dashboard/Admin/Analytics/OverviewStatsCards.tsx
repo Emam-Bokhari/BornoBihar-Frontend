@@ -1,29 +1,32 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getStats } from "@/services/Analytics";
 import { ShoppingCart, Users, DollarSign, Package } from "lucide-react";
 
-export default function OverviewStatsCard() {
+export default async function OverviewStatsCard() {
+  const { data } = await getStats();
+
   const stats = [
     {
       title: "Total Orders",
-      value: "1,245",
+      value: data.totalOrders,
       icon: <ShoppingCart />,
       color: "text-blue-500",
     },
     {
       title: "Total Sales",
-      value: "$3,50,000",
+      value: `$${data.totalSales}`,
       icon: <DollarSign />,
       color: "text-green-500",
     },
     {
       title: "Total Users",
-      value: "785",
+      value: data.totalUsers,
       icon: <Users />,
       color: "text-purple-500",
     },
     {
       title: "Total Products",
-      value: "1,920",
+      value: data.totalProducts,
       icon: <Package />,
       color: "text-orange-500",
     },

@@ -1,4 +1,5 @@
 "use client";
+import { TOrder } from "@/types";
 import React, { useEffect, useState } from "react";
 import {
   LineChart,
@@ -13,102 +14,35 @@ import {
   Bar,
 } from "recharts";
 
-// Sample order data (replace this with actual data fetching logic)
-const sampleOrders = [
-  {
-    products: [{ productId: "1", quantity: 5 }],
-    totalAmount: 100,
-    status: "delivered",
-    orderDate: new Date("2025-03-01"),
-  },
-  {
-    products: [{ productId: "2", quantity: 3 }],
-    totalAmount: 60,
-    status: "delivered",
-    orderDate: new Date("2025-03-02"),
-  },
-  {
-    products: [{ productId: "1", quantity: 2 }],
-    totalAmount: 40,
-    status: "delivered",
-    orderDate: new Date("2025-03-03"),
-  },
-  {
-    products: [{ productId: "1", quantity: 5 }],
-    totalAmount: 100,
-    status: "delivered",
-    orderDate: new Date("2025-03-04"),
-  },
-  {
-    products: [{ productId: "2", quantity: 3 }],
-    totalAmount: 60,
-    status: "delivered",
-    orderDate: new Date("2025-03-05"),
-  },
-  {
-    products: [{ productId: "1", quantity: 2 }],
-    totalAmount: 40,
-    status: "delivered",
-    orderDate: new Date("2025-03-06"),
-  },
-  {
-    products: [{ productId: "1", quantity: 5 }],
-    totalAmount: 100,
-    status: "delivered",
-    orderDate: new Date("2025-03-07"),
-  },
-  {
-    products: [{ productId: "2", quantity: 3 }],
-    totalAmount: 60,
-    status: "delivered",
-    orderDate: new Date("2025-03-08"),
-  },
-  {
-    products: [{ productId: "1", quantity: 2 }],
-    totalAmount: 40,
-    status: "delivered",
-    orderDate: new Date("2025-03-09"),
-  },
-  {
-    products: [{ productId: "1", quantity: 5 }],
-    totalAmount: 100,
-    status: "delivered",
-    orderDate: new Date("2025-03-10"),
-  },
-  {
-    products: [{ productId: "2", quantity: 3 }],
-    totalAmount: 60,
-    status: "delivered",
-    orderDate: new Date("2025-03-11"),
-  },
-  {
-    products: [{ productId: "1", quantity: 2 }],
-    totalAmount: 40,
-    status: "delivered",
-    orderDate: new Date("2025-03-12"),
-  },
-];
+// Assuming that `orderData` is passed as a prop from the parent component
 
-export default function SalesOverviewChart() {
+export default function SalesOverviewChart({
+  orderData,
+}: {
+  orderData: TOrder[];
+}) {
+  console.log(orderData);
+
   const [lineChartData, setLineChartData] = useState<any[]>([]);
   const [barChartData, setBarChartData] = useState<any[]>([]);
 
   useEffect(() => {
-    // Line chart data: sales trend over time
-    const lineData = sampleOrders.map((order) => ({
-      date: order.orderDate?.toLocaleDateString(),
-      sales: order.totalAmount || 0,
+    // Format the data for the Line Chart: sales trend over time
+    const lineData = orderData.map((order) => ({
+      date: new Date(order.createdAt).toLocaleDateString(), // Format the order date
+      sales: order.totalAmount || 0, // Use totalAmount from the order data
     }));
 
-    // Bar chart data: total sales per order
-    const barData = sampleOrders.map((order, index) => ({
-      orderId: `Order ${index + 1}`,
-      sales: order.totalAmount || 0,
+    // Format the data for the Bar Chart: total sales per order
+    const barData = orderData.map((order, index) => ({
+      orderId: `Order ${index + 1}`, // Display Order number
+      sales: order.totalAmount || 0, // Use totalAmount from the order data
     }));
 
+    // Update the state with formatted data
     setLineChartData(lineData);
     setBarChartData(barData);
-  }, []);
+  }, [orderData]); // Dependency array to update when orderData changes
 
   return (
     <div className="p-4 flex flex-col 2xl:flex-row gap-4">
@@ -122,7 +56,7 @@ export default function SalesOverviewChart() {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="sales" stroke="#8884d8" />
+            <Line type="monotone" dataKey="sales" stroke="#F65D4E" />
           </LineChart>
         </ResponsiveContainer>
       </div>
@@ -137,7 +71,7 @@ export default function SalesOverviewChart() {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="sales" fill="#82ca9d" />
+            <Bar dataKey="sales" fill="#F65D4E" />
           </BarChart>
         </ResponsiveContainer>
       </div>

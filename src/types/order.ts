@@ -27,4 +27,6 @@ export type TOrder = {
     status: 'pending' | 'shipping' | 'delivered';
     orderDate?: Date;
     transactionId?: string;
+    createdAt: string;
+    updatedAt: string;
 };
