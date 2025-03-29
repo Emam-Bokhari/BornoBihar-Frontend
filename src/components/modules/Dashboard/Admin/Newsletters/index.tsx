@@ -39,8 +39,6 @@ import { TNewsletter } from "@/types";
 import { FaTrash } from "react-icons/fa6";
 import { deleteNewsletterById } from "@/services/Newsletter";
 import { toast } from "sonner";
-import Link from "next/link";
-import { FaEdit } from "react-icons/fa";
 
 export default function ManageNewsletters({
   newsletters,

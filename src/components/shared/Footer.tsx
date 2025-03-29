@@ -7,7 +7,7 @@ import Container from "./Container";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#f7fafc] py-12 mt-12">
+    <footer className="bg-[#100E18] py-12 mt-12">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-12">
           {/* Logo & About Section */}
@@ -21,7 +21,7 @@ export default function Footer() {
                 className="transition-transform duration-300 hover:scale-105"
               />
             </Link>
-            <p className="text-base text-[#8a8a8a] mt-3 leading-relaxed">
+            <p className="text-base text-white mt-3 leading-relaxed">
               Discover the world’s best books with us. Whether you love fiction,
               non-fiction, or academic resources, we provide top-quality
               selections for every reader.
@@ -29,7 +29,7 @@ export default function Footer() {
             <p className="text-sm text-[#8a8a8a] mt-2">
               Have questions? Reach out to us at:
               <br />
-              <span className="font-semibold text-[#100E18]">
+              <span className="font-semibold text-white">
                 support@bornobihar.com
               </span>
             </p>
@@ -37,40 +37,31 @@ export default function Footer() {
 
           {/* Quick Links */}
           <nav>
-            <h3 className="text-lg font-semibold mb-3 text-[#100E18]">
+            <h3 className="text-lg font-semibold mb-3 text-white">
               Quick Links
             </h3>
             <ul className="space-y-2">
               <li>
-                <Link
-                  href="/about"
-                  className="hover:text-[#F65D4E] text-gray-900"
-                >
+                <Link href="/about" className="hover:text-[#F65D4E] text-white">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/shop"
-                  className="hover:text-[#F65D4E] text-gray-900"
-                >
+                <Link href="/books" className="hover:text-[#F65D4E] text-white">
                   Shop
                 </Link>
               </li>
               <li>
                 <Link
                   href="/contact"
-                  className="hover:text-[#F65D4E] text-gray-900"
+                  className="hover:text-[#F65D4E] text-white"
                 >
                   Contact
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/faq"
-                  className="hover:text-[#F65D4E] text-gray-900"
-                >
-                  FAQ
+                <Link href="/blogs" className="hover:text-[#F65D4E] text-white">
+                  Blogs
                 </Link>
               </li>
             </ul>
@@ -78,40 +69,36 @@ export default function Footer() {
 
           {/* category */}
           <nav>
-            <h3 className="text-lg font-semibold mb-3 text-[#100E18]">
-              Category
-            </h3>
+            <h3 className="text-lg font-semibold mb-3 text-white">Category</h3>
             <ul className="space-y-2">
               <li>
-                <Link
-                  href="/resources"
-                  className="hover:text-[#F65D4E] text-gray-900"
-                >
-                  Resources
+                <Link href="#" className="hover:text-[#F65D4E] text-white">
+                  Fiction
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/careers"
-                  className="hover:text-[#F65D4E] text-gray-900"
-                >
-                  Careers
+                <Link href="#" className="hover:text-[#F65D4E] text-white">
+                  Non Fiction
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/privacy-policy"
-                  className="hover:text-[#F65D4E] text-gray-900"
-                >
-                  Privacy Policy
+                <Link href="#" className="hover:text-[#F65D4E] text-white">
+                  Academic
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/terms-of-service"
-                  className="hover:text-[#F65D4E] text-gray-900"
-                >
-                  Terms of Service
+                <Link href="#" className="hover:text-[#F65D4E] text-white">
+                  Philosophy
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-[#F65D4E] text-white">
+                  Children
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-[#F65D4E] text-white">
+                  Science
                 </Link>
               </li>
             </ul>
@@ -119,25 +106,23 @@ export default function Footer() {
 
           {/* Social Media */}
           <div>
-            <h3 className="text-lg font-semibold mb-3 text-[#100E18]">
-              Follow Us
-            </h3>
+            <h3 className="text-lg font-semibold mb-3 text-white">Follow Us</h3>
             <div className="flex space-x-4">
               <Link href="#" aria-label="LinkedIn">
-                <FaLinkedinIn className="text-2xl" />
+                <FaLinkedinIn className="text-2xl text-white" />
               </Link>
               <Link href="#" aria-label="Twitter">
-                <FaXTwitter className="text-2xl" />
+                <FaXTwitter className="text-2xl text-white" />
               </Link>
               <Link href="#" aria-label="Instagram">
-                <IoLogoInstagram className="text-2xl " />
+                <IoLogoInstagram className="text-2xl text-white" />
               </Link>
             </div>
           </div>
         </div>
 
         {/* Copyright Section */}
-        <div className="mt-10 border-t border-gray-200 pt-6 text-center">
+        <div className="mt-10 border-t border-white pt-6 text-center">
           <p className="text-sm text-[#8a8a8a]">
             &copy; {new Date().getFullYear()} Bookstore | All Rights Reserved
           </p>

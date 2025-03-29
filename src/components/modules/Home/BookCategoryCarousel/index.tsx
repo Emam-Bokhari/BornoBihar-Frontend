@@ -15,6 +15,24 @@ import children from "@/assets/children.png";
 import science from "@/assets/science.png";
 import religion from "@/assets/religion.png";
 import history from "@/assets/history.png";
+import biography from "@/assets/biography.png";
+import art from "@/assets/art.png";
+import poetry from "@/assets/poetry.png";
+import romance from "@/assets/romance.png";
+import mystry from "@/assets/mystry.png";
+import fantasy from "@/assets/fantasy.png";
+import travel from "@/assets/travel.png";
+import selfHelp from "@/assets/selfHelp.png";
+import psychology from "@/assets/psychology.png";
+import politics from "@/assets/politics.png";
+import cookBook from "@/assets/cookBook.png";
+import humor from "@/assets/humor.png";
+import graphicNovels from "@/assets/graphicNovels.png";
+import health from "@/assets/health.png";
+import technology from "@/assets/technology.png";
+import business from "@/assets/business.png";
+import education from "@/assets/education.png";
+import sports from "@/assets/sports.png";
 
 const books = [
   {
@@ -48,6 +66,78 @@ const books = [
   {
     title: "History",
     image: history,
+  },
+  {
+    title: "Biography",
+    image: biography,
+  },
+  {
+    title: "Art",
+    image: art,
+  },
+  {
+    title: "Poetry",
+    image: poetry,
+  },
+  {
+    title: "Romance",
+    image: romance,
+  },
+  {
+    title: "Mystery",
+    image: mystry,
+  },
+  {
+    title: "Fantasy",
+    image: fantasy,
+  },
+  {
+    title: "Travel",
+    image: travel,
+  },
+  {
+    title: "Self Help",
+    image: selfHelp,
+  },
+  {
+    title: "Psychology",
+    image: psychology,
+  },
+  {
+    title: "Politics",
+    image: politics,
+  },
+  {
+    title: "Cookbook",
+    image: cookBook,
+  },
+  {
+    title: "Humor",
+    image: humor,
+  },
+  {
+    title: "GraphicNovels",
+    image: graphicNovels,
+  },
+  {
+    title: "Health",
+    image: health,
+  },
+  {
+    title: "Technology",
+    image: technology,
+  },
+  {
+    title: "Business",
+    image: business,
+  },
+  {
+    title: "Education",
+    image: education,
+  },
+  {
+    title: "Sports",
+    image: sports,
   },
 ];
 

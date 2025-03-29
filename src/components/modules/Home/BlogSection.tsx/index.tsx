@@ -11,9 +11,9 @@ export const BlogSection = ({ blogs }: { blogs: TBlog[] }) => {
     <Container className="my-12">
       <SectionTitle title="Latest Blog Post" viewAllUrl="/blogs" />
 
-      <div className="mt-4  grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 border-2 border-red-500">
+      <div className="mt-4  grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 ">
         {/* column 01 */}
-        <div className="space-y-4 border-2 border-green-500">
+        <div className="space-y-4 ">
           {blogs?.slice(0, 3).map((blog) => (
             <BlogCard key={blog._id} blog={blog} />
           ))}

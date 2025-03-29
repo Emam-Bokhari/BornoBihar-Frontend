@@ -107,7 +107,7 @@ export default function Books({ products }: { products: TProduct[] }) {
             ))}
           </div>
           {/* pagination actions */}
-          <div className="flex justify-end items-center gap-2 mt-[40%]">
+          <div className="flex justify-end items-center gap-2 mt-12">
             <Button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}

@@ -33,6 +33,60 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { Badge } from "../ui/badge";
 
+export const MegaMenu = () => {
+  return (
+    <div className="border max-w-screen absolute left-0 mt-2 rounded-lg p-6 bg-white shadow-xl flex gap-6 z-100 invisible group-hover:visible transition-all duration-300 ease-in-out">
+      {/* category */}
+      <div className="flex-1 min-w-[260px] border-r pr-6">
+        <h3 className="text-gray-500 font-semibold uppercase mb-3">Category</h3>
+        <ul className="space-y-2 text-gray-700">
+          <li>Fiction</li>
+          <li>Non Fiction</li>
+          <li>Academic</li>
+          <li>Philosophy</li>
+          <li>Children</li>
+          <li>Science</li>
+        </ul>
+      </div>
+
+      {/* books */}
+      <div className="flex-1 min-w-[260px] border-r pr-6">
+        <h3 className="text-gray-500 font-semibold uppercase mb-3">Books</h3>
+        <ul className="space-y-2 text-gray-700">
+          <li>Boxed Style</li>
+          <li>Full Style</li>
+          <li>Product Sidebar</li>
+          <li>Bought Together</li>
+          <li>Product Countdown</li>
+          <li>Grouped Product</li>
+        </ul>
+      </div>
+
+      {/* Promo Section */}
+      <div className="flex-1 min-w-[260px] flex flex-col items-center">
+        <div className="relative w-full h-40 rounded-lg overflow-hidden shadow-md">
+          <Image
+            src="https://res.cloudinary.com/dvpqm6zct/image/upload/v1743224077/logan-gutierrez-TDJkMUxWYSI-unsplash_hnbmjy.jpg"
+            alt="Best Offer"
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
+        <div className="text-center mt-3">
+          <p className="text-gray-500 text-sm">Best Offer</p>
+          <p className="text-lg font-bold text-gray-900">save $15</p>
+          <p className="text-gray-500 text-xs">ON SELECTED ITEMS</p>
+          <Link href="/books">
+            <Button className="mt-3 bg-[#F65D4E] hover:bg-[#D84C3F] rounded-full cursor-pointer">
+              See More →
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function Navbar({ user }: { user: IUser }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const cartItems = useSelector((state: RootState) => state.cart?.products);
@@ -98,6 +152,13 @@ export default function Navbar({ user }: { user: IUser }) {
                 </li>
                 <li>
                   <NavigationLink route="Books" path="/books" />
+                </li>
+                <li className="group relative">
+                  <NavigationLink route="Collections" path="#" />
+                  <MegaMenu />
+                </li>
+                <li>
+                  <NavigationLink route="Blogs" path="/blogs" />
                 </li>
                 <li>
                   <NavigationLink route="Contact" path="/contact" />

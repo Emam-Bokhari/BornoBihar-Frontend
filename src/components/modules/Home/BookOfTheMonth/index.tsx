@@ -8,7 +8,7 @@ export default function BookOfTheMonthSection() {
       className="relative flex items-center justify-center p-10 h-[400px] lg:h-[500px] xl:h-[600px] bg-cover bg-center mt-16"
       style={{
         backgroundImage:
-          'url("https://images.unsplash.com/photo-1627793741864-1a9ec3ef2ba0?q=80&w=2029&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+          'url("https://res.cloudinary.com/dvpqm6zct/image/upload/v1743205942/shiromani-kant-tHKlDb5EzN4-unsplash_jjtgmd.jpg")',
       }}
     >
       {/* Overlay */}
