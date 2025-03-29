@@ -32,6 +32,7 @@ import { IUser } from "@/types";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { Badge } from "../ui/badge";
+import { useRouter } from "next/navigation";
 
 export const MegaMenu = () => {
   return (
@@ -112,9 +113,9 @@ export const MegaMenu = () => {
 };
 
 export default function Navbar({ user }: { user: IUser }) {
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const cartItems = useSelector((state: RootState) => state.cart?.products);
-  console.log(user?.role);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -133,7 +134,7 @@ export default function Navbar({ user }: { user: IUser }) {
 
   const handleLogout = async () => {
     await logoutFromCookie();
-    // router.push("/");
+    router.push("/");
   };
 
   return (
@@ -291,6 +292,18 @@ export default function Navbar({ user }: { user: IUser }) {
                       <AiOutlineBook className="mr-2 text-lg" />
                       <Link href="/books" className="text-[#100E18] ">
                         Books
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <AiOutlineBook className="mr-2 text-lg" />
+                      <Link href="/category" className="text-[#100E18] ">
+                        Category
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <AiOutlineBook className="mr-2 text-lg" />
+                      <Link href="/blogs" className="text-[#100E18] ">
+                        Blogs
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
