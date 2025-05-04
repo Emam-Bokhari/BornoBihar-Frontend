@@ -36,7 +36,7 @@ import { useRouter } from "next/navigation";
 
 export const MegaMenu = () => {
   return (
-    <div className="border max-w-screen absolute left-0 mt-2 rounded-lg p-6 bg-white shadow-xl flex gap-6 z-100 invisible group-hover:visible transition-all duration-300 ease-in-out">
+    <div className="border max-w-screen absolute mt-2 left-1/2 -translate-x-1/2 rounded-lg p-6 bg-white shadow-xl flex gap-6 z-100 invisible group-hover:visible transition-all duration-300 ease-in-out">
       {/* category */}
       <div className="flex-1 min-w-[260px] border-r pr-6">
         <h3 className="text-gray-500 font-semibold uppercase mb-3">Category</h3>
