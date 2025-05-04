@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import bannerImage from "@/assets/banner-image.jpg";
+import Link from "next/link";
 
 export default function BannerSection() {
   return (
@@ -26,9 +27,11 @@ export default function BannerSection() {
             <br />
             we have something for everyone.
           </p>
-          <Button className=" bg-[#F65D4E] text-white  hover:bg-[#D84C3F] cursor-pointer">
-            Start Your Reading Journey
-          </Button>
+          <Link href="/books" className="block">
+            <Button className=" bg-[#F65D4E] text-white  hover:bg-[#D84C3F] cursor-pointer">
+              Start Your Reading Journey
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
