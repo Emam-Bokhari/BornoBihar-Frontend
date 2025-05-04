@@ -133,13 +133,15 @@ export default function ManageBlogs({ blogs }: { blogs: TBlog[] }) {
       accessorKey: "introduction",
       header: "Introduction",
       cell: ({ row }) => {
-        return (
-          <div className="font-medium capitalize">
-            {row.getValue("introduction")}
-          </div>
-        );
+        const value = row.getValue("introduction");
+        const shortText =
+          typeof value === "string"
+            ? value.slice(0, 70) + (value.length > 70 ? "..." : "")
+            : "";
+        return <div className="font-medium capitalize">{shortText}</div>;
       },
     },
+
     {
       accessorKey: "createdAt",
       header: "Published Date",
