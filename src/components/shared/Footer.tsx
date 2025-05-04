@@ -72,32 +72,50 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-3 text-white">Category</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="hover:text-[#F65D4E] text-white">
+                <Link
+                  href="/category/fiction"
+                  className="hover:text-[#F65D4E] text-white"
+                >
                   Fiction
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-[#F65D4E] text-white">
+                <Link
+                  href="/category/nonFiction"
+                  className="hover:text-[#F65D4E] text-white"
+                >
                   Non Fiction
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-[#F65D4E] text-white">
+                <Link
+                  href="/category/academic"
+                  className="hover:text-[#F65D4E] text-white"
+                >
                   Academic
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-[#F65D4E] text-white">
+                <Link
+                  href="/category/philosophy"
+                  className="hover:text-[#F65D4E] text-white"
+                >
                   Philosophy
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-[#F65D4E] text-white">
+                <Link
+                  href="/category/children"
+                  className="hover:text-[#F65D4E] text-white"
+                >
                   Children
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-[#F65D4E] text-white">
+                <Link
+                  href="/category/science"
+                  className="hover:text-[#F65D4E] text-white"
+                >
                   Science
                 </Link>
               </li>
