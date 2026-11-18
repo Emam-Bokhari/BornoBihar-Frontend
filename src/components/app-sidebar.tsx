@@ -197,10 +197,10 @@ export function AppSidebar({ user, ...props }: AppSidebarProps) {
                 </div>
                 <div className="flex flex-col min-w-0 flex-1 text-left leading-tight group-data-[collapsible=icon]:hidden">
                   <span className="font-semibold text-sm text-zinc-900 dark:text-zinc-100 truncate">
-                    ReSellBD
+                    BornoBihar
                   </span>
                   <span className="text-[11px] text-zinc-500 dark:text-zinc-400 truncate">
-                    New Deals, Endless Possibilities
+                    New Deals, Endless...
                   </span>
                 </div>
                 <ChevronsUpDown className="size-4 text-zinc-400 shrink-0 ml-auto group-data-[collapsible=icon]:hidden" />
