@@ -193,7 +193,7 @@ export default function AddProductForm() {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
+    <div className="w-full p-4 space-y-6 pb-12">
       <FormProvider {...form}>
         <form
           id="add-product-form"
@@ -201,7 +201,7 @@ export default function AddProductForm() {
           className="space-y-6"
         >
           {/* Top Header with title and actions */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border/60">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-gray-200/80 dark:border-zinc-800">
             <div className="space-y-1">
               <Link
                 href="/admin/dashboard/products"
@@ -217,23 +217,23 @@ export default function AddProductForm() {
               </p>
             </div>
 
-            {/* <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3">
               <Button
                 type="button"
                 variant="outline"
                 onClick={() => router.push("/admin/dashboard/products")}
-                className="cursor-pointer"
+                className="cursor-pointer rounded-xl h-10 px-4 text-xs font-medium"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-[#F65D4E] hover:bg-[#D84C3F] text-white font-medium shadow-sm cursor-pointer"
+                className="bg-[#F65D4E] hover:bg-[#D84C3F] text-white font-medium shadow-xs cursor-pointer rounded-xl h-10 px-5 text-xs"
               >
                 {isSubmitting ? "Adding..." : "Add Product"}
               </Button>
-            </div> */}
+            </div>
           </div>
 
           {/* Main 2-Column Responsive Layout */}
@@ -241,8 +241,8 @@ export default function AddProductForm() {
             {/* Left Column (Main Information) */}
             <div className="lg:col-span-7 xl:col-span-8 space-y-6">
               {/* 1. General Information Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs">
-                <CardHeader className="pb-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
+                <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
                   <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
                     <FileText className="w-4 h-4 text-[#F65D4E]" /> General Information
                   </CardTitle>
@@ -250,7 +250,7 @@ export default function AddProductForm() {
                     Provide essential details about the book.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="p-5 space-y-4">
                   {/* Title */}
                   <FormField
                     control={form.control}
@@ -296,8 +296,8 @@ export default function AddProductForm() {
               </Card>
 
               {/* 2. Pricing Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs">
-                <CardHeader className="pb-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
+                <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
                   <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
                     <DollarSign className="w-4 h-4 text-[#F65D4E]" /> Pricing
                   </CardTitle>
@@ -305,7 +305,7 @@ export default function AddProductForm() {
                     Configure the price for this product.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="p-5 space-y-4">
                   <FormField
                     control={form.control}
                     name="price"
@@ -337,8 +337,8 @@ export default function AddProductForm() {
               </Card>
 
               {/* 3. Inventory Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs">
-                <CardHeader className="pb-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
+                <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
                   <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
                     <Layers className="w-4 h-4 text-[#F65D4E]" /> Inventory & Rating
                   </CardTitle>
@@ -346,7 +346,7 @@ export default function AddProductForm() {
                     Manage stock availability and book rating.
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="p-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* Quantity */}
                     <FormField
@@ -407,8 +407,8 @@ export default function AddProductForm() {
               </Card>
 
               {/* 4. Author Details Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs">
-                <CardHeader className="pb-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
+                <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
                   <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
                     <BookOpen className="w-4 h-4 text-[#F65D4E]" /> Author Details
                   </CardTitle>
@@ -416,7 +416,7 @@ export default function AddProductForm() {
                     Information about the writer and background profile.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="p-5 space-y-4">
                   {/* Author Name */}
                   <FormField
                     control={form.control}
@@ -462,8 +462,8 @@ export default function AddProductForm() {
               </Card>
 
               {/* 5. Policies & Terms Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs">
-                <CardHeader className="pb-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
+                <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
                   <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
                     <ShieldCheck className="w-4 h-4 text-[#F65D4E]" /> Policies & Terms
                   </CardTitle>
@@ -471,7 +471,7 @@ export default function AddProductForm() {
                     Shipping rules, returns policy, and terms of sale.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="p-5 space-y-4">
                   {/* Shipping */}
                   <FormField
                     control={form.control}
@@ -541,8 +541,8 @@ export default function AddProductForm() {
             {/* Right Column (Sidebar Media & Organization) */}
             <div className="lg:col-span-5 xl:col-span-4 space-y-6">
               {/* 1. Product Media Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs">
-                <CardHeader className="pb-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
+                <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
                       <ImageIcon className="w-4 h-4 text-[#F65D4E]" /> Product Media
@@ -561,7 +561,7 @@ export default function AddProductForm() {
                     Photo previews and image URL management.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="p-5 space-y-4">
                   {/* Dashed photo preview container matching screenshot */}
                   <div className="border-2 border-dashed border-border/80 rounded-xl p-4 bg-muted/20 flex flex-col items-center justify-center">
                     <p className="text-xs font-medium text-muted-foreground mb-3 self-start">
@@ -680,8 +680,8 @@ export default function AddProductForm() {
               </Card>
 
               {/* 2. Category Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs">
-                <CardHeader className="pb-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
+                <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
                   <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
                     <Tag className="w-4 h-4 text-[#F65D4E]" /> Category & Attributes
                   </CardTitle>
@@ -689,7 +689,7 @@ export default function AddProductForm() {
                     Organize your product for easy navigation.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="p-5 space-y-4">
                   {/* Category */}
                   <FormField
                     control={form.control}
@@ -792,8 +792,8 @@ export default function AddProductForm() {
               </Card>
 
               {/* 3. Publishing Details Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs">
-                <CardHeader className="pb-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
+                <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
                   <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-[#F65D4E]" /> Publishing Details
                   </CardTitle>
@@ -801,7 +801,7 @@ export default function AddProductForm() {
                     Publication date, publisher, and volume.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="p-5 space-y-4">
                   {/* Publisher */}
                   <FormField
                     control={form.control}
@@ -900,12 +900,12 @@ export default function AddProductForm() {
               </Card>
 
               {/* 4. Action Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs bg-muted/20">
-                <CardContent className="pt-6 space-y-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-zinc-50/50 dark:bg-zinc-900/50 overflow-hidden">
+                <CardContent className="p-5 space-y-3">
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-[#F65D4E] hover:bg-[#D84C3F] text-white font-medium shadow-sm cursor-pointer h-10"
+                    className="w-full bg-[#F65D4E] hover:bg-[#D84C3F] text-white font-medium shadow-xs cursor-pointer h-10 rounded-xl text-sm"
                   >
                     {isSubmitting ? "Adding..." : "Add Product"}
                   </Button>
@@ -913,7 +913,7 @@ export default function AddProductForm() {
                     type="button"
                     variant="outline"
                     onClick={() => router.push("/admin/dashboard/products")}
-                    className="w-full cursor-pointer h-10"
+                    className="w-full cursor-pointer h-10 rounded-xl text-sm border-gray-200 dark:border-zinc-800"
                   >
                     Cancel
                   </Button>
