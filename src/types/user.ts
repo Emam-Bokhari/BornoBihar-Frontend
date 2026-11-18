@@ -21,4 +21,6 @@ export type TUser = {
     gender?: 'male' | 'female';
     age?: string;
     phone?: string;
+    createdAt?: string;
+    updatedAt?: string;
 }
