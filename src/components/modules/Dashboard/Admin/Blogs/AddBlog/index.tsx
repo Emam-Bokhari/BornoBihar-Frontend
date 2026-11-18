@@ -75,7 +75,7 @@ export default function AddBlogForm() {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
+    <div className="w-full p-4 space-y-6 pb-12">
       <FormProvider {...form}>
         <form
           id="add-blog-form"
@@ -83,7 +83,7 @@ export default function AddBlogForm() {
           className="space-y-6"
         >
           {/* Top Header with title and actions */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border/60">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-gray-200/80 dark:border-zinc-800">
             <div className="space-y-1">
               <Link
                 href="/admin/dashboard/blogs"
@@ -104,14 +104,14 @@ export default function AddBlogForm() {
                 type="button"
                 variant="outline"
                 onClick={() => router.push("/admin/dashboard/blogs")}
-                className="cursor-pointer"
+                className="cursor-pointer rounded-xl h-10 px-4 text-xs font-medium"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-[#F65D4E] hover:bg-[#D84C3F] text-white font-medium shadow-sm cursor-pointer"
+                className="bg-[#F65D4E] hover:bg-[#D84C3F] text-white font-medium shadow-xs cursor-pointer rounded-xl h-10 px-5 text-xs"
               >
                 {isSubmitting ? "Adding..." : "Add Blog"}
               </Button>
@@ -123,8 +123,8 @@ export default function AddBlogForm() {
             {/* Left Column (Main Article Content) */}
             <div className="lg:col-span-7 xl:col-span-8 space-y-6">
               {/* 1. General Content Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs">
-                <CardHeader className="pb-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
+                <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
                   <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
                     <FileText className="w-4 h-4 text-[#F65D4E]" /> Article Content
                   </CardTitle>
@@ -132,7 +132,7 @@ export default function AddBlogForm() {
                     Provide the title, introduction, and comprehensive article body.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="p-5 space-y-4">
                   {/* Title */}
                   <FormField
                     control={form.control}
