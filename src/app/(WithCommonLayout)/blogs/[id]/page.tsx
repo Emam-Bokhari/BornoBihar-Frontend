@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { TBlog } from "@/types";
 import { getBlogById } from "@/services/Blog";
 import BlogDetails from "@/components/modules/Blogs/BlogDetails";
+import { notFound } from "next/navigation";
 
 export default async function BlogDetailsPage({
   params,
@@ -9,7 +10,12 @@ export default async function BlogDetailsPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const { data: blog }: { data: TBlog } = await getBlogById(id);
+  const res = await getBlogById(id);
+  const blog: TBlog | undefined = res?.data;
+
+  if (!blog) {
+    return notFound();
+  }
 
   return (
     <Fragment>

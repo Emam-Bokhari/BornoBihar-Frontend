@@ -23,10 +23,13 @@ export const getBlogById = async (id: string) => {
                 tags: ["BLOG"],
             },
         });
+        if (!res.ok) {
+            return { success: false, data: null };
+        }
         const data = await res.json();
         return data;
-    } catch (error: any) {
-        throw new Error(error);
+    } catch {
+        return { success: false, data: null };
     }
 };
 
