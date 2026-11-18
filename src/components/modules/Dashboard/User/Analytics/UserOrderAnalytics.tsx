@@ -28,15 +28,35 @@ import {
   Package,
 } from "lucide-react";
 
-interface TooltipPayloadItem {
-  value?: number | string;
-  payload?: Record<string, unknown>;
-  [key: string]: unknown;
+interface SpendingItem {
+  date: string;
+  fullDate: string;
+  spending: number;
+  orderIndex: number;
 }
 
-interface TooltipProps {
+interface ProductsItem {
+  orderId: string;
+  date: string;
+  productsPurchased: number;
+  amount: number;
+}
+
+interface SpendingTooltipProps {
   active?: boolean;
-  payload?: TooltipPayloadItem[];
+  payload?: Array<{
+    value?: number | string;
+    payload?: SpendingItem;
+  }>;
+  label?: string;
+}
+
+interface ProductsTooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    value?: number | string;
+    payload?: ProductsItem;
+  }>;
   label?: string;
 }
 
@@ -44,7 +64,7 @@ const CustomSpendingTooltip = ({
   active,
   payload,
   label,
-}: TooltipProps) => {
+}: SpendingTooltipProps) => {
   if (active && payload && payload.length) {
     const item = payload[0].payload;
     return (
@@ -52,7 +72,7 @@ const CustomSpendingTooltip = ({
         <div className="flex items-center gap-2 mb-2 pb-1.5 border-b border-gray-100 dark:border-zinc-800">
           <Calendar className="w-3.5 h-3.5 text-[#F65D4E]" />
           <span className="font-semibold text-foreground text-sm">
-            {item.fullDate || label}
+            {item?.fullDate || label}
           </span>
         </div>
         <div className="space-y-1.5">
@@ -79,7 +99,7 @@ const CustomProductsTooltip = ({
   active,
   payload,
   label,
-}: TooltipProps) => {
+}: ProductsTooltipProps) => {
   if (active && payload && payload.length) {
     const item = payload[0].payload;
     return (
@@ -87,7 +107,7 @@ const CustomProductsTooltip = ({
         <div className="flex items-center gap-2 mb-2 pb-1.5 border-b border-gray-100 dark:border-zinc-800">
           <Package className="w-3.5 h-3.5 text-blue-500" />
           <span className="font-semibold text-foreground text-sm">
-            {item.orderId || label}
+            {item?.orderId || label}
           </span>
         </div>
         <div className="space-y-1.5">
@@ -100,7 +120,7 @@ const CustomProductsTooltip = ({
               {payload[0].value} {Number(payload[0].value) === 1 ? "unit" : "units"}
             </span>
           </div>
-          {item.date && (
+          {item?.date && (
             <div className="flex items-center justify-between gap-4 pt-1 border-t border-gray-100 dark:border-zinc-800 text-muted-foreground">
               <span>Date:</span>
               <span className="font-medium text-foreground">{item.date}</span>

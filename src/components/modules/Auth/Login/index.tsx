@@ -26,6 +26,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { loginUser } from "@/services/Auth";
 import { toast } from "sonner";
+import { jwtDecode } from "jwt-decode";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -47,28 +48,62 @@ export default function LoginForm() {
       const response = await loginUser(data);
 
       if (response?.success) {
-        toast.success(response?.message);
+        let isAdmin = data?.email === "admin@gmail.com";
+
+        const token = response?.data?.token || response?.data?.accessToken;
+        if (token) {
+          try {
+            const decoded = jwtDecode<{ role?: string }>(token);
+            if (decoded?.role?.toLowerCase() === "admin") {
+              isAdmin = true;
+            }
+          } catch {
+            // ignore
+          }
+        }
+
+        if (
+          response?.data?.role?.toLowerCase() === "admin" ||
+          response?.data?.user?.role?.toLowerCase() === "admin"
+        ) {
+          isAdmin = true;
+        }
+
         form.reset();
 
-        router.push("/");
+        if (isAdmin) {
+          toast.success("Admin logged in successfully");
+          router.push("/admin/dashboard");
+          router.refresh();
+        } else {
+          toast.success("User logged in successfully");
+          router.push("/");
+          router.refresh();
+        }
       } else {
-        toast.error(response.error[0]?.message);
+        toast.error(
+          response?.error?.[0]?.message ||
+            response?.message ||
+            "Failed to login"
+        );
       }
     } catch {
-      toast.error("Something went wring!");
+      toast.error("Something went wrong!");
     }
   };
 
-  // function to prefill the form for "User"
+  // function to prefill and login for "User"
   const handleUserButtonClick = () => {
-    setValue("email", "user@gmail.com");
-    setValue("password", "user123");
+    setValue("email", "user@gmail.com", { shouldValidate: true });
+    setValue("password", "user123", { shouldValidate: true });
+    form.handleSubmit(onSubmit)();
   };
 
-  // function to prefill the form for "Admin"
+  // function to prefill and login for "Admin"
   const handleAdminButtonClick = () => {
-    setValue("email", "admin@gmail.com");
-    setValue("password", "admin123");
+    setValue("email", "admin@gmail.com", { shouldValidate: true });
+    setValue("password", "admin123", { shouldValidate: true });
+    form.handleSubmit(onSubmit)();
   };
 
   return (
@@ -98,14 +133,16 @@ export default function LoginForm() {
                 <div className="flex flex-col gap-4 md:flex-row">
                   <Button
                     onClick={handleUserButtonClick}
-                    type="submit"
+                    type="button"
+                    disabled={isSubmitting}
                     className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white flex-1"
                   >
                     User
                   </Button>
                   <Button
                     onClick={handleAdminButtonClick}
-                    type="submit"
+                    type="button"
+                    disabled={isSubmitting}
                     className="cursor-pointer bg-green-600 hover:bg-green-700 text-white flex-1"
                   >
                     Admin
