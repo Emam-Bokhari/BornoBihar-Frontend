@@ -2,7 +2,7 @@
 import BookCard from "@/components/modules/Books/BookCard";
 import CommonBannerSection from "@/components/shared/CommonBannerSection";
 import Container from "@/components/shared/Container";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import SidebarFilter from "./SidebarFilter";
 import { TProduct } from "@/types";
 import { Input } from "@/components/ui/input";
@@ -13,16 +13,25 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 
-export default function Books({ products }: { products: TProduct[] }) {
+const ITEMS_PER_BATCH = 12;
+
+export default function Books({ products = [] }: { products: TProduct[] }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [isAvailable, setIsAvailable] = useState(false);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_BATCH);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const observerTarget = useRef<HTMLDivElement>(null);
+  const loadingRef = useRef(false);
+
+  // Reset pagination when any filter changes
+  useEffect(() => {
+    setVisibleCount(ITEMS_PER_BATCH);
+  }, [searchTerm, sortOrder, selectedCategories, isAvailable, priceRange]);
 
   const filteredProducts = products
     ?.filter((product) =>
@@ -46,12 +55,41 @@ export default function Books({ products }: { products: TProduct[] }) {
       return 0;
     });
 
-  //  pagination
-  const totalPages = Math.ceil(filteredProducts?.length / itemsPerPage);
-  const paginatedProducts = filteredProducts?.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+  const displayedProducts = filteredProducts?.slice(0, visibleCount);
+  const hasMore = visibleCount < (filteredProducts?.length || 0);
+
+  // Scroll to view (Infinite scroll) observer
+  useEffect(() => {
+    const target = observerTarget.current;
+    if (!target || !hasMore) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && hasMore && !loadingRef.current) {
+          loadingRef.current = true;
+          setIsLoadingMore(true);
+
+          setTimeout(() => {
+            setVisibleCount((prev) => prev + ITEMS_PER_BATCH);
+            setIsLoadingMore(false);
+            loadingRef.current = false;
+          }, 350);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "200px",
+        threshold: 0.1,
+      }
+    );
+
+    observer.observe(target);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [hasMore, visibleCount]);
 
   return (
     <Fragment>
@@ -97,39 +135,62 @@ export default function Books({ products }: { products: TProduct[] }) {
 
         {/* book grid */}
         <div className="flex-1">
-          <div className="grid grid-cols-1 md:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4 gap-4 w-full">
-            {paginatedProducts?.map((product) => (
-              <Fragment key={product?._id}>
-                {/* Book Card */}
-                <BookCard product={product} />
-                {/* Row-wise Horizontal Line */}
-              </Fragment>
-            ))}
-          </div>
-          {/* pagination actions */}
-          <div className="flex justify-end items-center gap-2 mt-12">
-            <Button
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              disabled={currentPage === 1}
-              size="sm"
-              className="bg-[#F65D4E] hover:bg-[#D84C3F] text-white cursor-pointer"
-            >
-              Previous
-            </Button>
-            <span className="text-sm font-semibold">
-              Page {currentPage} of {totalPages}
+          {/* Items count summary */}
+          <div className="mb-4 flex items-center justify-between text-xs text-muted-foreground">
+            <span>
+              Showing{" "}
+              <strong className="text-foreground">
+                {displayedProducts?.length || 0}
+              </strong>{" "}
+              of{" "}
+              <strong className="text-foreground">
+                {filteredProducts?.length || 0}
+              </strong>{" "}
+              books
             </span>
-            <Button
-              onClick={() =>
-                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-              }
-              disabled={currentPage === totalPages}
-              size="sm"
-              className="bg-[#F65D4E] hover:bg-[#D84C3F] text-white cursor-pointer"
-            >
-              Next
-            </Button>
           </div>
+
+          {displayedProducts?.length === 0 ? (
+            <div className="text-center py-16 text-muted-foreground">
+              <p className="text-base font-medium">
+                No books found matching your criteria.
+              </p>
+              <p className="text-xs mt-1">
+                Try adjusting your filters or search term.
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 w-full">
+              {displayedProducts?.map((product) => (
+                <Fragment key={product?._id}>
+                  <BookCard product={product} />
+                </Fragment>
+              ))}
+            </div>
+          )}
+
+          {/* Scroll to view sentinel trigger */}
+          {hasMore && (
+            <div
+              ref={observerTarget}
+              className="h-10 w-full flex items-center justify-center mt-6"
+            />
+          )}
+
+          {/* Loading indicator when fetching more */}
+          {isLoadingMore && (
+            <div className="flex items-center justify-center gap-2 py-8 text-muted-foreground">
+              <Loader2 className="w-5 h-5 animate-spin text-[#F65D4E]" />
+              <span className="text-sm font-medium">Loading more books...</span>
+            </div>
+          )}
+
+          {/* End of collection indicator */}
+          {!hasMore && (filteredProducts?.length || 0) > 0 && (
+            <div className="text-center py-8 text-xs text-muted-foreground border-t border-dashed border-gray-200 dark:border-zinc-800 mt-8">
+              All {filteredProducts?.length} books loaded
+            </div>
+          )}
         </div>
       </Container>
     </Fragment>

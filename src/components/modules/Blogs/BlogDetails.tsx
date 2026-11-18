@@ -23,7 +23,7 @@ const badgeColors = [
 export default function BlogDetails({ blog }: { blog: TBlog }) {
   return (
     <Fragment>
-      <Container className="my-8 sm:my-12 max-w-4xl">
+      <Container className="my-12">
         {/* Back navigation */}
         <div className="mb-6">
           <Link
@@ -76,7 +76,7 @@ export default function BlogDetails({ blog }: { blog: TBlog }) {
 
         {/* Thumbnail Image */}
         {blog?.thumbnail ? (
-          <div className="relative w-full h-[260px] sm:h-[360px] md:h-[450px] rounded-2xl overflow-hidden mb-8 shadow-sm border border-border/60 bg-muted">
+          <div className="relative w-full h-[260px] sm:h-[360px] md:h-[450px] lg:h-[500px] rounded-2xl overflow-hidden mb-8 shadow-sm border border-border/60 bg-muted">
             <Image
               src={blog.thumbnail}
               alt={`${blog?.title || "Blog"} - thumbnail image`}
