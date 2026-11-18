@@ -126,14 +126,14 @@ export default function ManageContacts({
             <p className="text-xs text-muted-foreground truncate" title={message}>
               {message}
             </p>
-            {message.length > 50 && (
+            {message.length > 30 && (
               <button
                 type="button"
                 onClick={() => setActiveMessage(contact)}
-                className="text-[11px] text-[#F65D4E] hover:underline font-medium shrink-0 flex items-center gap-0.5"
+                className="text-[11px] text-[#F65D4E] hover:underline font-medium shrink-0 flex items-center gap-0.5 cursor-pointer"
               >
                 <Eye className="w-3 h-3" />
-                Read
+                Read More
               </button>
             )}
           </div>
