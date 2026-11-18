@@ -199,8 +199,8 @@ export default function AddBlogForm() {
               </Card>
 
               {/* 2. Author Details Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs">
-                <CardHeader className="pb-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
+                <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
                   <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
                     <User className="w-4 h-4 text-[#F65D4E]" /> Author Information
                   </CardTitle>
@@ -208,7 +208,7 @@ export default function AddBlogForm() {
                     Credit the author or editorial team behind this post.
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="p-5">
                   <FormField
                     control={form.control}
                     name="authorName"
@@ -235,8 +235,8 @@ export default function AddBlogForm() {
             {/* Right Column (Media, Category & Actions) */}
             <div className="lg:col-span-5 xl:col-span-4 space-y-6">
               {/* 1. Featured Image Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs">
-                <CardHeader className="pb-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
+                <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
                   <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
                     <ImageIcon className="w-4 h-4 text-[#F65D4E]" /> Featured Image
                   </CardTitle>
@@ -244,7 +244,7 @@ export default function AddBlogForm() {
                     Thumbnail banner displayed in the blog listing and header.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="p-5 space-y-4">
                   {/* Dashed preview container */}
                   <div className="border-2 border-dashed border-border/80 rounded-xl p-4 bg-muted/20 flex flex-col items-center justify-center">
                     <p className="text-xs font-medium text-muted-foreground mb-3 self-start">
@@ -302,8 +302,8 @@ export default function AddBlogForm() {
               </Card>
 
               {/* 2. Category & Tags Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs">
-                <CardHeader className="pb-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
+                <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
                   <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
                     <Tag className="w-4 h-4 text-[#F65D4E]" /> Classification & Tags
                   </CardTitle>
@@ -311,7 +311,7 @@ export default function AddBlogForm() {
                     Organize post for easy discovery by readers.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="p-5 space-y-4">
                   {/* Category */}
                   <FormField
                     control={form.control}
@@ -374,12 +374,12 @@ export default function AddBlogForm() {
               </Card>
 
               {/* 3. Action Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs bg-muted/20">
-                <CardContent className="pt-6 space-y-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-zinc-50/50 dark:bg-zinc-900/50 overflow-hidden">
+                <CardContent className="p-5 space-y-3">
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-[#F65D4E] hover:bg-[#D84C3F] text-white font-medium shadow-sm cursor-pointer h-10"
+                    className="w-full bg-[#F65D4E] hover:bg-[#D84C3F] text-white font-medium shadow-xs cursor-pointer h-10 rounded-xl text-sm"
                   >
                     {isSubmitting ? "Adding..." : "Add Blog"}
                   </Button>
@@ -387,7 +387,7 @@ export default function AddBlogForm() {
                     type="button"
                     variant="outline"
                     onClick={() => router.push("/admin/dashboard/blogs")}
-                    className="w-full cursor-pointer h-10"
+                    className="w-full cursor-pointer h-10 rounded-xl text-sm border-gray-200 dark:border-zinc-800"
                   >
                     Cancel
                   </Button>

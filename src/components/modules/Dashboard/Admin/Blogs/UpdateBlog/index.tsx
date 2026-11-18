@@ -72,7 +72,7 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
+    <div className="w-full p-4 space-y-6 pb-12">
       <FormProvider {...form}>
         <form
           id="update-blog-form"
@@ -80,7 +80,7 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
           className="space-y-6"
         >
           {/* Top Header with title and actions */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border/60">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-gray-200/80 dark:border-zinc-800">
             <div className="space-y-1">
               <Link
                 href="/admin/dashboard/blogs"
@@ -96,23 +96,23 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
+            {/* <div className="flex items-center gap-3">
               <Button
                 type="button"
                 variant="outline"
                 onClick={() => router.push("/admin/dashboard/blogs")}
-                className="cursor-pointer"
+                className="cursor-pointer rounded-xl h-10 px-4 text-xs font-medium"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-[#F65D4E] hover:bg-[#D84C3F] text-white font-medium shadow-sm cursor-pointer"
+                className="bg-[#F65D4E] hover:bg-[#D84C3F] text-white font-medium shadow-xs cursor-pointer rounded-xl h-10 px-5 text-xs"
               >
                 {isSubmitting ? "Updating..." : "Update Blog"}
               </Button>
-            </div>
+            </div> */}
           </div>
 
           {/* Main 2-Column Responsive Layout */}
@@ -120,8 +120,8 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
             {/* Left Column (Main Article Content) */}
             <div className="lg:col-span-7 xl:col-span-8 space-y-6">
               {/* 1. General Content Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs">
-                <CardHeader className="pb-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
+                <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
                   <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
                     <FileText className="w-4 h-4 text-[#F65D4E]" /> Article Content
                   </CardTitle>
@@ -129,7 +129,7 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
                     Provide the title, introduction, and comprehensive article body.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="p-5 space-y-4">
                   {/* Title */}
                   <FormField
                     control={form.control}
@@ -199,8 +199,8 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
               </Card>
 
               {/* 2. Author Details Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs">
-                <CardHeader className="pb-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
+                <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
                   <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
                     <User className="w-4 h-4 text-[#F65D4E]" /> Author Information
                   </CardTitle>
@@ -208,7 +208,7 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
                     Credit the author or editorial team behind this post.
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="p-5">
                   <FormField
                     control={form.control}
                     name="authorName"
@@ -236,8 +236,8 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
             {/* Right Column (Media, Category & Actions) */}
             <div className="lg:col-span-5 xl:col-span-4 space-y-6">
               {/* 1. Featured Image Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs">
-                <CardHeader className="pb-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
+                <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
                   <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
                     <ImageIcon className="w-4 h-4 text-[#F65D4E]" /> Featured Image
                   </CardTitle>
@@ -245,7 +245,7 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
                     Thumbnail banner displayed in the blog listing and header.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="p-5 space-y-4">
                   {/* Dashed preview container */}
                   <div className="border-2 border-dashed border-border/80 rounded-xl p-4 bg-muted/20 flex flex-col items-center justify-center">
                     <p className="text-xs font-medium text-muted-foreground mb-3 self-start">
@@ -304,8 +304,8 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
               </Card>
 
               {/* 2. Category & Tags Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs">
-                <CardHeader className="pb-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
+                <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
                   <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
                     <Tag className="w-4 h-4 text-[#F65D4E]" /> Classification & Tags
                   </CardTitle>
@@ -313,7 +313,7 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
                     Organize post for easy discovery by readers.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="p-5 space-y-4">
                   {/* Category */}
                   <FormField
                     control={form.control}
@@ -377,12 +377,12 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
               </Card>
 
               {/* 3. Action Card */}
-              <Card className="rounded-xl border border-border/70 shadow-xs bg-muted/20">
-                <CardContent className="pt-6 space-y-3">
+              <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-zinc-50/50 dark:bg-zinc-900/50 overflow-hidden">
+                <CardContent className="p-5 space-y-3">
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-[#F65D4E] hover:bg-[#D84C3F] text-white font-medium shadow-sm cursor-pointer h-10"
+                    className="w-full bg-[#F65D4E] hover:bg-[#D84C3F] text-white font-medium shadow-xs cursor-pointer h-10 rounded-xl text-sm"
                   >
                     {isSubmitting ? "Updating..." : "Update Blog"}
                   </Button>
@@ -390,7 +390,7 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
                     type="button"
                     variant="outline"
                     onClick={() => router.push("/admin/dashboard/blogs")}
-                    className="w-full cursor-pointer h-10"
+                    className="w-full cursor-pointer h-10 rounded-xl text-sm border-gray-200 dark:border-zinc-800"
                   >
                     Cancel
                   </Button>

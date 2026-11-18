@@ -218,7 +218,7 @@ export default function UpdateProductForm({ product }: { product: TProduct }) {
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
+            {/* <div className="flex items-center gap-3">
               <Button
                 type="button"
                 variant="outline"
@@ -234,7 +234,7 @@ export default function UpdateProductForm({ product }: { product: TProduct }) {
               >
                 {isSubmitting ? "Updating..." : "Update Product"}
               </Button>
-            </div>
+            </div> */}
           </div>
 
           {/* Main 2-Column Responsive Layout */}
