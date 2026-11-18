@@ -1,43 +1,73 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCurrentUser } from "./services/Auth"
+import { jwtDecode } from "jwt-decode";
 
 type Role = keyof typeof roleBasedPrivateRoutes;
 
-export const authRoutes = ["/login", "/register"]
+export const authRoutes = ["/login", "/register"];
 
 const roleBasedPrivateRoutes = {
-    user: [/^\/user/, /^\/cart/, /^\/checkout/, /^\/dashboard\/user\/books\/recent-viewed-books/, /^\/dashboard\/user\/orders\/order-history/, /^\/dashboard\/user\/profile/, /^\/dashboard\/user\/supports\/add-support/],
+  user: [
+    /^\/user/,
+    /^\/cart/,
+    /^\/checkout/,
+    /^\/dashboard\/user\/books\/recent-viewed-books/,
+    /^\/dashboard\/user\/orders\/order-history/,
+    /^\/dashboard\/user\/profile/,
+    /^\/dashboard\/user\/supports\/add-support/,
+  ],
 
-    admin: [/^\/admin/, /^\/user/, /^\/cart/, /^\/checkout/, /^\/dashboard\/user\/books\/recent-viewed-books/, /^\/dashboard\/user\/orders\/order-history/, /^\/dashboard\/user\/profile/, /^\/dashboard\/admin\/users/, /^\/dashboard\/admin\/orders/, /^\/dashboard\/admin\/contacts/, /^\/dashboard\/admin\/products/, /^\/dashboard\/admin\/products\/add-product/, /^\/dashboard\/admin\/products\/update-product/, /^\/dashboard\/admin\/supports/, /^\/dashboard\/admin\/blogs/, /^\/dashboard\/admin\/blogs\/add-blog/, /^\/dashboard\/admin\/blogs\/update-blog/, /^\/dashboard\/admin\/newsletters/],
+  admin: [
+    /^\/admin/,
+    /^\/user/,
+    /^\/cart/,
+    /^\/checkout/,
+    /^\/dashboard\/user\/books\/recent-viewed-books/,
+    /^\/dashboard\/user\/orders\/order-history/,
+    /^\/dashboard\/user\/profile/,
+    /^\/dashboard\/admin\/users/,
+    /^\/dashboard\/admin\/orders/,
+    /^\/dashboard\/admin\/contacts/,
+    /^\/dashboard\/admin\/products/,
+    /^\/dashboard\/admin\/products\/add-product/,
+    /^\/dashboard\/admin\/products\/update-product/,
+    /^\/dashboard\/admin\/supports/,
+    /^\/dashboard\/admin\/blogs/,
+    /^\/dashboard\/admin\/blogs\/add-blog/,
+    /^\/dashboard\/admin\/blogs\/update-blog/,
+    /^\/dashboard\/admin\/newsletters/,
+  ],
 };
 
 export const middleware = async (request: NextRequest) => {
+  const { pathname } = request.nextUrl;
+  const token = request.cookies.get("accessToken")?.value;
 
-    const { pathname } = request.nextUrl
-    const userInfo = await getCurrentUser();
+  let userInfo: { role?: string } | null = null;
+  if (token) {
+    try {
+      userInfo = jwtDecode<{ role?: string }>(token);
+    } catch {
+      userInfo = null;
+    }
+  }
 
+  if (!userInfo) {
+    if (authRoutes.includes(pathname)) {
+      return NextResponse.next();
+    } else {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+  }
 
-    if (!userInfo) {
-        if (authRoutes.includes(pathname)) {
-            return NextResponse.next()
-        } else {
-            return NextResponse.redirect(
-                new URL(`https://borno-bihar-frontend-9tdv.vercel.app/login`, request.url)
-            )
-        }
+  if (userInfo?.role && roleBasedPrivateRoutes[userInfo?.role as Role]) {
+    const routes = roleBasedPrivateRoutes[userInfo?.role as Role];
+    if (routes.some((route) => pathname.match(route))) {
+      return NextResponse.next();
     }
 
-    if (userInfo?.role && roleBasedPrivateRoutes[userInfo?.role as Role]) {
-        const routes = roleBasedPrivateRoutes[userInfo?.role as Role];
-        if (routes.some((route) => pathname.match(route))) {
-            return NextResponse.next();
-        }
-
-        return NextResponse.redirect(new URL("/", request.url));
-    }
-
-
-}
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+};
 
 export const config = {
     matcher: [
