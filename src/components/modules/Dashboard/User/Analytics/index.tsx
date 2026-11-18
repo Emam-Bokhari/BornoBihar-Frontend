@@ -1,16 +1,20 @@
-import { Fragment } from "react";
 import UserOrderAnalytics from "./UserOrderAnalytics";
 import UserStatsCard from "./UserStatsCard";
 import { getOrderHistory } from "@/services/Order";
 
 export default async function UserDashboard() {
   const response = await getOrderHistory();
-  const orderData = response?.data || [];
+  const orderData = Array.isArray(response?.data) ? response.data : [];
 
   return (
-    <Fragment>
-      <UserStatsCard />
-      <UserOrderAnalytics orderData={orderData} />
-    </Fragment>
+    <div className="space-y-6 pb-12">
+      {/* Stat Cards */}
+      <UserStatsCard initialOrders={orderData} />
+
+      {/* Analytics Charts */}
+      <div className="px-4">
+        <UserOrderAnalytics orderData={orderData} />
+      </div>
+    </div>
   );
 }
