@@ -209,10 +209,10 @@ export default function AddProductForm() {
               >
                 <ArrowLeft className="w-3.5 h-3.5" /> Back to Products
               </Link>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+              <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
                 Add a New Product
               </h1>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
                 Fill in the product details, media, and pricing to publish to the store.
               </p>
             </div>
@@ -243,10 +243,10 @@ export default function AddProductForm() {
               {/* 1. General Information Card */}
               <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
                 <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
-                  <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
+                  <CardTitle className="text-base font-semibold text-foreground flex items-center gap-2">
                     <FileText className="w-4 h-4 text-[#F65D4E]" /> General Information
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-xs text-muted-foreground mt-0.5">
                     Provide essential details about the book.
                   </CardDescription>
                 </CardHeader>
@@ -298,10 +298,10 @@ export default function AddProductForm() {
               {/* 2. Pricing Card */}
               <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
                 <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
-                  <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
+                  <CardTitle className="text-base font-semibold text-foreground flex items-center gap-2">
                     <DollarSign className="w-4 h-4 text-[#F65D4E]" /> Pricing
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-xs text-muted-foreground mt-0.5">
                     Configure the price for this product.
                   </CardDescription>
                 </CardHeader>
@@ -339,10 +339,10 @@ export default function AddProductForm() {
               {/* 3. Inventory Card */}
               <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
                 <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
-                  <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
+                  <CardTitle className="text-base font-semibold text-foreground flex items-center gap-2">
                     <Layers className="w-4 h-4 text-[#F65D4E]" /> Inventory & Rating
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-xs text-muted-foreground mt-0.5">
                     Manage stock availability and book rating.
                   </CardDescription>
                 </CardHeader>
@@ -409,10 +409,10 @@ export default function AddProductForm() {
               {/* 4. Author Details Card */}
               <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
                 <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
-                  <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
+                  <CardTitle className="text-base font-semibold text-foreground flex items-center gap-2">
                     <BookOpen className="w-4 h-4 text-[#F65D4E]" /> Author Details
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-xs text-muted-foreground mt-0.5">
                     Information about the writer and background profile.
                   </CardDescription>
                 </CardHeader>
@@ -464,10 +464,10 @@ export default function AddProductForm() {
               {/* 5. Policies & Terms Card */}
               <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
                 <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
-                  <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
+                  <CardTitle className="text-base font-semibold text-foreground flex items-center gap-2">
                     <ShieldCheck className="w-4 h-4 text-[#F65D4E]" /> Policies & Terms
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-xs text-muted-foreground mt-0.5">
                     Shipping rules, returns policy, and terms of sale.
                   </CardDescription>
                 </CardHeader>
@@ -544,7 +544,7 @@ export default function AddProductForm() {
               <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
                 <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
+                    <CardTitle className="text-base font-semibold text-foreground flex items-center gap-2">
                       <ImageIcon className="w-4 h-4 text-[#F65D4E]" /> Product Media
                     </CardTitle>
                     <Button
@@ -557,7 +557,7 @@ export default function AddProductForm() {
                       <Plus className="w-3.5 h-3.5" /> Add Image
                     </Button>
                   </div>
-                  <CardDescription>
+                  <CardDescription className="text-xs text-muted-foreground mt-0.5">
                     Photo previews and image URL management.
                   </CardDescription>
                 </CardHeader>
@@ -682,10 +682,10 @@ export default function AddProductForm() {
               {/* 2. Category Card */}
               <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
                 <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
-                  <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
+                  <CardTitle className="text-base font-semibold text-foreground flex items-center gap-2">
                     <Tag className="w-4 h-4 text-[#F65D4E]" /> Category & Attributes
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-xs text-muted-foreground mt-0.5">
                     Organize your product for easy navigation.
                   </CardDescription>
                 </CardHeader>
@@ -794,10 +794,10 @@ export default function AddProductForm() {
               {/* 3. Publishing Details Card */}
               <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
                 <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
-                  <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
+                  <CardTitle className="text-base font-semibold text-foreground flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-[#F65D4E]" /> Publishing Details
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-xs text-muted-foreground mt-0.5">
                     Publication date, publisher, and volume.
                   </CardDescription>
                 </CardHeader>

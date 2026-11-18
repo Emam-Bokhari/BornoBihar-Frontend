@@ -88,10 +88,10 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
               >
                 <ArrowLeft className="w-3.5 h-3.5" /> Back to Blogs
               </Link>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+              <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
                 Update Blog
               </h1>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
                 Edit article details, banner image, category, and main body text.
               </p>
             </div>
@@ -122,10 +122,10 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
               {/* 1. General Content Card */}
               <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
                 <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
-                  <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
+                  <CardTitle className="text-base font-semibold text-foreground flex items-center gap-2">
                     <FileText className="w-4 h-4 text-[#F65D4E]" /> Article Content
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-xs text-muted-foreground mt-0.5">
                     Provide the title, introduction, and comprehensive article body.
                   </CardDescription>
                 </CardHeader>
@@ -201,10 +201,10 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
               {/* 2. Author Details Card */}
               <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
                 <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
-                  <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
+                  <CardTitle className="text-base font-semibold text-foreground flex items-center gap-2">
                     <User className="w-4 h-4 text-[#F65D4E]" /> Author Information
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-xs text-muted-foreground mt-0.5">
                     Credit the author or editorial team behind this post.
                   </CardDescription>
                 </CardHeader>
@@ -238,10 +238,10 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
               {/* 1. Featured Image Card */}
               <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
                 <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
-                  <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
+                  <CardTitle className="text-base font-semibold text-foreground flex items-center gap-2">
                     <ImageIcon className="w-4 h-4 text-[#F65D4E]" /> Featured Image
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-xs text-muted-foreground mt-0.5">
                     Thumbnail banner displayed in the blog listing and header.
                   </CardDescription>
                 </CardHeader>
@@ -306,10 +306,10 @@ export default function UpdateBlogForm({ blog }: { blog: TBlog }) {
               {/* 2. Category & Tags Card */}
               <Card className="rounded-2xl border border-gray-200/80 dark:border-zinc-800 shadow-xs bg-white dark:bg-zinc-900 overflow-hidden">
                 <CardHeader className="p-5 pb-4 border-b border-gray-100 dark:border-zinc-800/80">
-                  <CardTitle className="text-base sm:text-lg font-semibold flex items-center gap-2">
+                  <CardTitle className="text-base font-semibold text-foreground flex items-center gap-2">
                     <Tag className="w-4 h-4 text-[#F65D4E]" /> Classification & Tags
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-xs text-muted-foreground mt-0.5">
                     Organize post for easy discovery by readers.
                   </CardDescription>
                 </CardHeader>
