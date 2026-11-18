@@ -217,7 +217,7 @@ export default function AddProductForm() {
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
+            {/* <div className="flex items-center gap-3">
               <Button
                 type="button"
                 variant="outline"
@@ -233,7 +233,7 @@ export default function AddProductForm() {
               >
                 {isSubmitting ? "Adding..." : "Add Product"}
               </Button>
-            </div>
+            </div> */}
           </div>
 
           {/* Main 2-Column Responsive Layout */}

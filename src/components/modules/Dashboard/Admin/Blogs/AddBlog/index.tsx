@@ -99,7 +99,7 @@ export default function AddBlogForm() {
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
+            {/* <div className="flex items-center gap-3">
               <Button
                 type="button"
                 variant="outline"
@@ -115,7 +115,7 @@ export default function AddBlogForm() {
               >
                 {isSubmitting ? "Adding..." : "Add Blog"}
               </Button>
-            </div>
+            </div> */}
           </div>
 
           {/* Main 2-Column Responsive Layout */}
