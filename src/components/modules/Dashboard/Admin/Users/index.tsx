@@ -226,11 +226,6 @@ export default function ManageUsers({ users = [] }: { users: TUser[] }) {
                     : "bg-rose-50 text-rose-700 border-rose-200 hover:bg-rose-100 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-800"
                 }`}
               >
-                <span
-                  className={`w-1.5 h-1.5 rounded-full ${
-                    isActive ? "bg-emerald-500" : "bg-rose-500"
-                  }`}
-                />
                 <span className="capitalize">{user.status || "Active"}</span>
                 <ChevronDown className="w-3 h-3 opacity-60" />
               </Button>
