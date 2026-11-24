@@ -5,7 +5,7 @@ BornoBihar is an e-commerce web application tailored for browsing, purchasing, a
 ## Live Deployment
 
 - Production URL: https://borno-bihar-frontend-umber.vercel.app
-- Source Repository: https://github.com/Emam-Bokhari/BornoBihar-Frontend.git
+- Source Repository: https://github.com/Emam-Bokhari/bornobihar-frontend
 
 ## Technical Stack
 
@@ -99,8 +99,8 @@ Ensure the following tools are installed on your workstation:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Emam-Bokhari/BornoBihar-Frontend.git
-   cd BornoBihar-Frontend
+   git clone https://github.com/Emam-Bokhari/bornobihar-frontend.git
+   cd bornobihar-frontend
    ```
 
 2. Install dependencies:
