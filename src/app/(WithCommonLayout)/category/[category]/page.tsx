@@ -11,11 +11,10 @@ export default async function CategoryPage({
   params: Promise<{ category: string }>;
 }) {
   const { category } = await params;
-  const { data: products }: { data: TProduct[] } = await getProductsByCategory(
-    category
-  );
+  const res = await getProductsByCategory(category);
+  const products: TProduct[] = res?.data ?? [];
 
-  if (!(products ?? false)) {
+  if (!products || products.length === 0) {
     return (
       <Fragment>
         <p className="text-center mt-[5%] text-gray-500 text-lg">

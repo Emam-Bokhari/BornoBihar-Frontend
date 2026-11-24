@@ -4,12 +4,12 @@ import BookCard from "../../Books/BookCard";
 import { TProduct } from "@/types";
 
 export default function NewArrivalsBooks({
-  products,
+  products = [],
 }: {
-  products: TProduct[];
+  products?: TProduct[];
 }) {
   // Sort books by createdAt in descending order (newest first)
-  const newArrivalsBooks = [...products]
+  const newArrivalsBooks = [...(products ?? [])]
     .sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()

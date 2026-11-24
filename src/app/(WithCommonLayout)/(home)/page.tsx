@@ -14,10 +14,11 @@ import { getAllProducts } from "@/services/Product";
 import { Fragment } from "react";
 
 export default async function HomePage() {
-  const { data } = await getAllBlogs();
-  const blogs = data ?? [];
+  const blogsRes = await getAllBlogs();
+  const blogs = blogsRes?.data ?? [];
 
-  const { data: products } = await getAllProducts();
+  const productsRes = await getAllProducts();
+  const products = productsRes?.data ?? [];
 
   return (
     <Fragment>

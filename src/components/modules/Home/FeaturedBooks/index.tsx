@@ -7,7 +7,8 @@ import { TProduct } from "@/types";
 import { getAllProducts } from "@/services/Product";
 
 export default async function FeaturedBooks() {
-  const { data: products }: { data: TProduct[] } = await getAllProducts();
+  const res = await getAllProducts();
+  const products: TProduct[] = res?.data ?? [];
   // Sort by createdAt in descending order (latest first)
   const sortedProducts = products
     ?.sort(

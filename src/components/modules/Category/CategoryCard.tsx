@@ -2,7 +2,17 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function CategoryCard({ category }: { category: any }) {
+export type TCategoryItem = {
+  title: string;
+  label: string;
+  image: string;
+};
+
+export default function CategoryCard({
+  category,
+}: {
+  category: TCategoryItem;
+}) {
   const router = useRouter();
 
   return (

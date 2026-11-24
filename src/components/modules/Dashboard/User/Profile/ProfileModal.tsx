@@ -28,26 +28,35 @@ export default function ProfileModal({
   onSave,
 }: {
   profile: TUser;
-  onSave: (updateProfile: any) => void;
+  onSave: (updateProfile: TUser) => void;
 }) {
   const [open, setOpen] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    name: string;
+    image: string;
+    phone: string;
+    age: string;
+    gender: "male" | "female";
+    country: string;
+    city: string;
+    postalCode: string;
+  }>({
     name: profile?.name || "",
     image: profile?.image || "",
     phone: profile?.phone || "",
     age: profile?.age || "",
-    gender: profile?.gender || "",
+    gender: (profile?.gender as "male" | "female") || "male",
     country: profile?.country || "",
     city: profile?.city || "",
     postalCode: profile?.postalCode || "",
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleGenderChange = (value: "male" | "female") => {
-    setFormData({ ...formData, gender: value || "male" });
+    setFormData((prev) => ({ ...prev, gender: value || "male" }));
   };
 
   const handleSubmit = async () => {
@@ -72,7 +81,7 @@ export default function ProfileModal({
     } catch {
       toast.error("Something went wring!");
     }
-    onSave(formData);
+    onSave({ ...profile, ...formData });
     setOpen(false);
   };
 

@@ -2,8 +2,9 @@
 
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
+import { FieldValues } from "react-hook-form";
 
-export const addNewsletter = async (newsletterData: any) => {
+export const addNewsletter = async (newsletterData: FieldValues | Record<string, unknown>) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/newsletters`, {
             method: "POST",
@@ -17,13 +18,17 @@ export const addNewsletter = async (newsletterData: any) => {
         const data = await res.json();
 
         return data;
-    } catch (error: any) {
-        throw new Error(error);
+    } catch (error: unknown) {
+        return {
+            success: false,
+            message: (error as Error)?.message || "Failed to add newsletter",
+        };
     }
 };
 
 export const getAllNewsletters = async () => {
     try {
+        const token = (await cookies()).get("accessToken")?.value || "";
         const response = await fetch(
             `${process.env.NEXT_PUBLIC_BASE_API}/newsletters`,
             {
@@ -33,35 +38,42 @@ export const getAllNewsletters = async () => {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: (await cookies()).get("accessToken")!.value,
+                    Authorization: token,
                 },
             }
         );
+        if (!response.ok) {
+            return { success: false, data: [] };
+        }
 
         const data = await response.json();
 
         return data;
-    } catch (error: any) {
-        throw new Error(error);
+    } catch {
+        return { success: false, data: [] };
     }
 };
 
 export const deleteNewsletterById = async (id: string) => {
     try {
+        const token = (await cookies()).get("accessToken")?.value || "";
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_BASE_API}/newsletters/${id}`,
             {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: (await cookies()).get("accessToken")!.value,
+                    Authorization: token,
                 },
             }
         );
         revalidateTag("NEWSLETTER");
         const data = await res.json();
         return data;
-    } catch (error: any) {
-        throw new Error(error);
+    } catch (error: unknown) {
+        return {
+            success: false,
+            message: (error as Error)?.message || "Failed to delete newsletter",
+        };
     }
 };

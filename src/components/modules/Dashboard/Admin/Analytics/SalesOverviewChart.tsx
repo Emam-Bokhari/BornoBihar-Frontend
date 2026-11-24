@@ -14,13 +14,23 @@ import {
   Bar,
 } from "recharts";
 
+type TLineChartItem = {
+  date: string;
+  sales: number;
+};
+
+type TBarChartItem = {
+  orderId: string;
+  sales: number;
+};
+
 export default function SalesOverviewChart({
   orderData,
 }: {
   orderData: TOrder[];
 }) {
-  const [lineChartData, setLineChartData] = useState<any[]>([]);
-  const [barChartData, setBarChartData] = useState<any[]>([]);
+  const [lineChartData, setLineChartData] = useState<TLineChartItem[]>([]);
+  const [barChartData, setBarChartData] = useState<TBarChartItem[]>([]);
 
   useEffect(() => {
     const lineData = orderData?.map((order) => ({

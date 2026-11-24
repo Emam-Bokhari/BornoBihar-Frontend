@@ -4,7 +4,8 @@ import { TBlog } from "@/types";
 import { Fragment } from "react";
 
 export default async function BlogsPage() {
-  const { data: blogs }: { data: TBlog[] } = await getAllBlogs();
+  const res = await getAllBlogs();
+  const blogs: TBlog[] = res?.data ?? [];
 
   return (
     <Fragment>
